@@ -1,0 +1,39 @@
+<footer>
+  <div class="wrapper-flex">
+    <div class="text-white">
+      <%= link_to 'logo', root_path, class:"navbar-brand" %>
+      <div class="social-link mt-5">
+        <a href="#">
+          <%= fa_stacked_icon "facebook", base: "square-o"%>
+        </a>
+        <a href="#">
+          <%= fa_stacked_icon "youtube", base: "square-o"%>
+        </a>
+        <a href="#">
+          <%= fa_stacked_icon "twitter", base: "square-o"%>
+        </a>
+        <a href="#">
+          <%= fa_stacked_icon "pinterest", base: "square-o"%>
+        </a>
+        <a href="#">
+          <%= fa_stacked_icon "instagram", base: "square-o"%>
+        </a>
+      </div>
+    </div>
+    <div class="footer-nav">
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><%= link_to 'Blog', blog_path %></li>
+      </ul>
+      <ul>
+        <li><a href="#">Support</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrapper">
+    <button class="btn-primary">Request Invite</button>
+    <p class="copyright">&copy; krishna kumar</p>
+  </div>
+</footer>
