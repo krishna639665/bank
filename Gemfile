@@ -73,3 +73,4 @@ end
 
 gem 'bootstrap', '~> 5.1.3'
 gem "font-awesome-rails"
+gem "devise", "~> 4.8"
