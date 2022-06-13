@@ -10,10 +10,14 @@
   </head>
   <body>
     <% user = current_user %>
-    <%= render 'layouts/navbar'%>
+    <% if !(user_signed_in?) || (user.has_role? :user) %>
+      <%= render 'layouts/navbar'%>
+    <% end %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
-    <%= render 'layouts/footer' %>
+    <% if !(user_signed_in?) || (user.has_role? :user) %>
+      <%= render 'layouts/footer'%>
+    <% end %>
   </body>
 </html>
