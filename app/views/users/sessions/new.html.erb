@@ -1,7 +1,7 @@
 <div class="container ">
   <div class="login-wrap">
     <div class="login-html">
-      <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+      <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Log In</label>
       <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
       <div class="login-form">
         <div class="sign-in-htm">
@@ -16,8 +16,8 @@
             </div>
             <div class="group">
               <% if devise_mapping.rememberable? %>
-                <%= f.check_box :remember_me, id:"check", class:"check" %>
-                <%= f.label :remember_me, for:"check", class:"icon" %>
+                <%= f.check_box :remember_me, id:"check" %>
+                <%= f.label :remember_me, for:"check" %>
               <% end %>
             </div>
             <div class="group">
@@ -27,7 +27,7 @@
           <div class="hr"></div>
           <div class="foot-lnk">
             <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-              <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+              <%= link_to "Forgot your password?", new_password_path(resource_name),class:"btn-primary" %>
             <% end %>
           </div>
         </div>
