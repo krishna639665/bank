@@ -1,7 +1,9 @@
 <footer class= "mt-5">
   <div class="wrapper-flex">
     <div class="text-white">
-      <%= link_to 'logo', root_path, class:"navbar-brand" %>
+      <a href="<%=root_path%>">
+        <%= image_tag 'logo(3).png', class:"logo" %>
+      </a>
       <div class="social-link mt-5">
         <a href="#">
           <%= fa_stacked_icon "facebook", base: "square-o"%>
@@ -33,7 +35,13 @@
     </div>
   </div>
   <div class="wrapper">
-    <button class="btn-primary">Request Invite</button>
+    <button class="btn-primary">
+      <% if user_signed_in? %>
+        <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to "Login", new_user_session_path %>
+      <% end %>
+    </button>
     <p class="copyright">&copy; krishna kumar</p>
   </div>
 </footer>
