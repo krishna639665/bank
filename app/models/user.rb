@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :accounts
+  
   after_create :assign_default_role
   rolify
   # Include default devise modules. Others available are:
@@ -8,9 +10,5 @@ class User < ApplicationRecord
 
   def assign_default_role
     self.add_role(:user) if self.roles.blank?
-  end
-
-  def testing_role
-
   end
 end

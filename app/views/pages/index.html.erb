@@ -13,11 +13,11 @@
         for spending, saving, budgeting, investing, and much more.
       </p>
       <button>
-        <div class=btn>
+        <div class=btn-primary >
           <% if user_signed_in? %>
-            <%= link_to "Log Out", destroy_user_session_path, method: :delete, class:"btn-primary " %>
+            <%= link_to "Applay Now", new_account_path, method: :delete %>
           <% else %>
-            <%= link_to "Login", new_user_session_path, class:"btn-primary " %>
+            <%= link_to "Login", new_user_session_path %>
           <% end %>
         </button>
       </div>

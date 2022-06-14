@@ -27,5 +27,9 @@
 
 /public/assets
 
+/config/database.yml
+/Gemfile.lock
+/db/schema.rb
+
 # Ignore master key for decrypting credentials and more.
 /config/master.key
