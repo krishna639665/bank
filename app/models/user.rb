@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :accounts
+  
   after_create :assign_default_role
   rolify
   # Include default devise modules. Others available are:

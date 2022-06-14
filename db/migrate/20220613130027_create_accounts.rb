@@ -13,7 +13,7 @@ class CreateAccounts < ActiveRecord::Migration[7.0]
       t.string :account_number
       t.string :account_ifsc
       t.float :account_balance
-      t.references :user, foreign_key: true
+      t.references :user, foreign: true
     
       t.timestamps
     end

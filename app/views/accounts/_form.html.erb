@@ -1,0 +1,74 @@
+<%= stylesheet_link_tag "registration-form", "data-turbo-track": "reload" %>
+<%= form_with(model: @account, local: true) do |form|  %>
+<div class="form_wrapper">
+  <div class="form_container">
+    <div class="title_container">
+      <h2>Swiss Application  Form</h2>
+    </div>
+    <div class="row clearfix">
+      <div class="">
+        <form>
+          
+          <div class="row clearfix">
+            <div class="col_half">
+              <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                 <%= form.text_field :first_name, placeholder:"First Name",required:true %>
+              </div>
+            </div>
+            <div class="col_half">
+              <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                <%= form.text_field :last_name, placeholder:"Last Name", required:true %>
+              </div>
+            </div>
+          </div>
+
+          <div class="row clearfix">
+            <div class="col_half">
+              <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                <%= form.text_field :nomine_name, placeholder:"Nomine Name", required:true %>
+              </div>
+            </div>
+            <div class="col_half">
+              <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                <%= form.text_field :phone_number, placeholder:"Phone Number", required:true %>
+              </div>
+            </div>
+          </div>
+
+          <div class="row clearfix">
+            <div class="col_half">
+              <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                <%= form.text_field :age, placeholder:"Age", required:true %>
+              </div>
+            </div>
+            <div class="col_half">
+              <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                <%= form.text_field :adhar_number, placeholder:"Adhar Number", required:true %>
+              </div>
+            </div>
+          </div>
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+            <%= form.text_field :address, placeholder:"Address", required:true %>
+          </div>
+
+          
+            	<div class="input_field radio_option">
+              <%= form.radio_button :gender, 'male',id:"rd1" %>
+              <label for="rd1">Male</label>
+              <%= form.radio_button :gender, 'female',id:"rd2" %>
+              <label for="rd2">Female</label>
+              </div>
+              <div class="input_field select_option">
+                <%= form.select :account_type, ["Current Account", "Savings Account", "Salary Account", "Fixed Account"] %>
+                <div class="select_arrow"></div>
+              </div>
+            </div>
+          <%= form.submit "Register" %>
+          
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<p class="credit">Developed by <a href="http://www.designtheway.com" target="_blank">Antier Solution</a></p>
+<%end%>
