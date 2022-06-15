@@ -22,9 +22,8 @@
       </li>
     </ul>
     <div class="card__action">
-      <%# <button class="card__action__button card__action--follow">Update</button> %>
       <%= link_to 'Update', edit_account_path(@account), class:"card__action__button card__action--follow"%>
-      <button class="card__action__button card__action--message">Money Transfer</button>
+      <%= link_to 'Money Transfer', new_account_transaction_path(@account), class:"card__action__button card__action--follow"%>
     </div>
     <br>
     <div class="card__action">
