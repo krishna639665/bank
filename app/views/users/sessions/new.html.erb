@@ -1,37 +1,25 @@
-<div class="container ">
-  <div class="login-wrap">
-    <div class="login-html">
-      <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Log In</label>
-      <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
-      <div class="login-form">
-        <div class="sign-in-htm">
-          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-            <div class="group">
-              <%= f.label :email,for:"user", class:"label" %>
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", id:"user", class:"input" %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="form_wrapper">
+    <div class="form_container">
+      <div class="title_container">
+        <h2>Login</h2>
+      </div>
+      <div class="row clearfix">
+        <div class="">
+          <form>
+            <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"Email", required:true %>
             </div>
-            <div class="group">
-              <%= f.label :password ,for:"pass", class:"label" %>
-              <%= f.password_field :password, autocomplete: "current-password", id:"pass", class:"input" %>
+            <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+              <%= f.password_field :password, autocomplete: "current-password", placeholder:"password", required:true %>
             </div>
-            <div class="group">
-              <% if devise_mapping.rememberable? %>
-                <%= f.check_box :remember_me, id:"check" %>
-                <%= f.label :remember_me, for:"check" %>
-              <% end %>
+            <%= f.submit "Log in" %>
+            <div>
+              <%= render "users/shared/links" %>
             </div>
-            <div class="group">
-              <%= f.submit "Log in", class:"button" %>
-            </div>
-          <% end %>
-          <div class="hr"></div>
-          <div class="foot-lnk">
-            <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-              <%= link_to "Forgot your password?", new_password_path(resource_name),class:"btn-primary" %>
-            <% end %>
-          </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
-</div>
+<%end%>

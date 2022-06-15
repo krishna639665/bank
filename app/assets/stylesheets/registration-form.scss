@@ -1,8 +1,6 @@
-$yellow: #f5ba1a;
+$yellow: #43ee79;
 $black: #000000;
 $grey: #cccccc;
-
-
 body {
     font-family: Verdana, Geneva, sans-serif;
     font-size: 14px;
@@ -41,49 +39,40 @@ body {
     -webkit-animation: expand 0.8s 0.6s ease-out forwards;
     animation: expand 0.8s 0.6s ease-out forwards;
     opacity: 0;
-
     h2 {
         font-size: 1.5em;
         line-height: 1.5em;
         margin: 0;
     }
-
     .title_container {
         text-align: center;
         padding-bottom: 15px;
     }
-
     h3 {
         font-size: 1.1em;
         font-weight: normal;
         line-height: 1.5em;
         margin: 0;
     }
-
     label {
         font-size: 12px;
     }
-
     .row {
         margin: 10px -15px;
-
         >div {
             padding: 0 15px;
             box-sizing: border-box;
         }
     }
-
     .col_half {
         width: 50%;
         float: left;
     }
-
     .input_field {
         position: relative;
         margin-bottom: 20px;
         -webkit-animation: bounce 0.6s ease-out;
         animation: bounce 0.6s ease-out;
-
         >span {
             position: absolute;
             left: 0;
@@ -93,13 +82,11 @@ body {
             border-right: 1px solid $grey;
             text-align: center;
             width: 30px;
-
             >i {
                 padding-top: 10px;
             }
         }
     }
-
     .textarea_field {
         >span {
             >i {
@@ -107,9 +94,7 @@ body {
             }
         }
     }
-
     input {
-
         &[type="text"],
         &[type="email"],
         &[type="password"] {
@@ -124,13 +109,11 @@ body {
             -ms-transition: all 0.30s ease-in-out;
             transition: all 0.30s ease-in-out;
         }
-
         &[type="text"]:hover,
         &[type="email"]:hover,
         &[type="password"]:hover {
             background: #fafafa;
         }
-
         &[type="text"]:focus,
         &[type="email"]:focus,
         &[type="password"]:focus {
@@ -140,7 +123,6 @@ body {
             border: 1px solid $yellow;
             background: #fafafa;
         }
-
         &[type="submit"] {
             background: $yellow;
             height: 35px;
@@ -156,16 +138,13 @@ body {
             -moz-transition: all 0.30s ease-in-out;
             -ms-transition: all 0.30s ease-in-out;
             transition: all 0.30s ease-in-out;
-
             &:hover {
                 background: darken($yellow, 7%);
             }
-
             &:focus {
                 background: darken($yellow, 7%);
             }
         }
-
         &[type="checkbox"],
         &[type="radio"] {
             border: 0;
@@ -192,7 +171,6 @@ body {
     label {
         margin-right: 1em;
         position: relative;
-
         &:before {
             content: "";
             display: inline-block;
@@ -206,7 +184,6 @@ body {
             background-clip: content-box;
             transition: all 0.2s ease;
         }
-
         &:after {
             border-right: 2px solid $black;
             border-top: 2px solid $black;
@@ -221,17 +198,14 @@ body {
             display: none;
         }
     }
-
     input {
         &:hover+label:before {
             border-color: $black;
         }
-
         &:checked+label {
             &:before {
                 border-color: $black;
             }
-
             &:after {
                 -moz-animation: check 0.8s ease 0s running;
                 -webkit-animation: check 0.8s ease 0s running;
@@ -248,7 +222,6 @@ body {
 .radio_option {
     label {
         margin-right: 1em;
-
         &:before {
             content: "";
             display: inline-block;
@@ -264,12 +237,10 @@ body {
             transition: all 0.2s ease;
         }
     }
-
     input {
         &:hover+label:before {
             border-color: $black;
         }
-
         &:checked+label:before {
             background-color: $black;
             border-color: $black;
@@ -280,7 +251,6 @@ body {
 .select_option {
     position: relative;
     width: 100%;
-
     select {
         display: inline-block;
         width: 100%;
@@ -295,11 +265,9 @@ body {
         -webkit-appearance: none;
         -moz-appearance: none;
         transition: all 0.2s ease;
-
         &::-ms-expand {
             display: none;
         }
-
         &:hover,
         &:focus {
             color: $black;
@@ -323,7 +291,6 @@ body {
 }
 
 .select_option select {
-
     &:hover+.select_arrow,
     &:focus+.select_arrow {
         border-top-color: $black;
@@ -336,7 +303,6 @@ body {
     text-align: center;
     padding: 15px;
     color: $yellow;
-
     a {
         color: darken($yellow, 7%);
     }
@@ -347,12 +313,10 @@ body {
         height: 0;
         width: 0;
     }
-
     25% {
         height: 0;
         width: 7px;
     }
-
     50% {
         height: 20px;
         width: 7px;
@@ -364,12 +328,10 @@ body {
         height: 0;
         width: 0;
     }
-
     25% {
         height: 0;
         width: 7px;
     }
-
     50% {
         height: 20px;
         width: 7px;
@@ -381,19 +343,15 @@ body {
         -webkit-transform: scale3d(1, 0, 1);
         opacity: 0;
     }
-
     25% {
         -webkit-transform: scale3d(1, 1.2, 1);
     }
-
     50% {
         -webkit-transform: scale3d(1, 0.85, 1);
     }
-
     75% {
         -webkit-transform: scale3d(1, 1.05, 1);
     }
-
     100% {
         -webkit-transform: scale3d(1, 1, 1);
         opacity: 1;
@@ -406,22 +364,18 @@ body {
         transform: scale3d(1, 0, 1);
         opacity: 0;
     }
-
     25% {
         -webkit-transform: scale3d(1, 1.2, 1);
         transform: scale3d(1, 1.2, 1);
     }
-
     50% {
         -webkit-transform: scale3d(1, 0.85, 1);
         transform: scale3d(1, 0.85, 1);
     }
-
     75% {
         -webkit-transform: scale3d(1, 1.05, 1);
         transform: scale3d(1, 1.05, 1);
     }
-
     100% {
         -webkit-transform: scale3d(1, 1, 1);
         transform: scale3d(1, 1, 1);
@@ -429,25 +383,20 @@ body {
     }
 }
 
-
 @-webkit-keyframes bounce {
     0% {
         -webkit-transform: translate3d(0, -25px, 0);
         opacity: 0;
     }
-
     25% {
         -webkit-transform: translate3d(0, 10px, 0);
     }
-
     50% {
         -webkit-transform: translate3d(0, -6px, 0);
     }
-
     75% {
         -webkit-transform: translate3d(0, 2px, 0);
     }
-
     100% {
         -webkit-transform: translate3d(0, 0, 0);
         opacity: 1;
@@ -460,22 +409,18 @@ body {
         transform: translate3d(0, -25px, 0);
         opacity: 0;
     }
-
     25% {
         -webkit-transform: translate3d(0, 10px, 0);
         transform: translate3d(0, 10px, 0);
     }
-
     50% {
         -webkit-transform: translate3d(0, -6px, 0);
         transform: translate3d(0, -6px, 0);
     }
-
     75% {
         -webkit-transform: translate3d(0, 2px, 0);
         transform: translate3d(0, 2px, 0);
     }
-
     100% {
         -webkit-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0);
@@ -490,14 +435,12 @@ body {
             float: none;
         }
     }
-
     .bottom_row {
         .col_half {
             width: 50%;
             float: left;
         }
     }
-
     .form_container {
         .row {
             .col_half.last {
@@ -505,7 +448,6 @@ body {
             }
         }
     }
-
     .remember_me {
         padding-bottom: 20px;
     }
