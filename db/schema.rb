@@ -44,6 +44,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_15_065340) do
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
   end
 
+  create_table "transactions", force: :cascade do |t|
+    t.string "transaction_id"
+    t.string "transaction_type"
+    t.string "transaction_status"
+    t.float "transaction_amount"
+    t.bigint "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_transactions_on_account_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
