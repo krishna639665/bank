@@ -1,0 +1,6 @@
+<% unless params[:format].nil? %>
+  <% @user = User.find(params[:format])%>
+  <%= render @user.accounts %>
+<% else %>
+  <%= render @accounts %>
+<% end %>

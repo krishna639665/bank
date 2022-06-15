@@ -1,10 +1,16 @@
 class AccountsController < ApplicationController
+    before_action :show_params, only: [:show,:edit,:update]
 
 
     def new
         @account = Account.new
     end
 
+    def show
+    end
+
+    def edit
+    end
 
     def create
         new_params = account_params.merge!(auto_generate)
@@ -16,17 +22,8 @@ class AccountsController < ApplicationController
             render 'new'
         end
     end
-
-    def show
-        @account =Account.find(params[:id])
-    end
-
-    def edit
-        @account = Account.find(params[:id])
-    end
-
+    
     def update
-        @account = Account.find(params[:id])
         if @account.update(account_params)
             flash[:notice] = "Account updated successfully"
             redirect_to @account
@@ -36,6 +33,9 @@ class AccountsController < ApplicationController
     end
 
     private
+    def show_params
+        @account = Account.find(params[:id])
+    end
 
     def account_params
         params.require(:account).permit(:first_name, :last_name,:nomine_name,:phone_number,:age,:adhar_number,:address,:gender,:account_type)
@@ -48,8 +48,5 @@ class AccountsController < ApplicationController
         return acc_hash = {"account_number"=>account_number,"account_ifsc" =>account_ifsc,"account_balance" =>account_balance}
 
     end
-
-
-
 
 end

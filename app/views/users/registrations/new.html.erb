@@ -1,34 +1,35 @@
-<div class="container ">
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "users/shared/error_messages", resource: resource %>
-  <div class="login-wrap">
-    <div class="login-html">
-      <input id="tab-1" type="radio" name="tab" class="sign-in"><label for="tab-1" class="tab"></label>
-      <input id="tab-2" type="radio" name="tab" class="sign-up" checked><label for="tab-2" class="tab">sign up</label>
-      <div class="login-form">
-        <div class="sign-up-htm">
-          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-            <div class="group">
-              <%= f.label :email,for:"user", class:"label" %>
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", id:"user", class:"input" %>
+  <div class="form_wrapper">
+    <div class="form_container">
+      <div class="title_container">
+        <h2>Sign up</h2>
+      </div>
+      <div class="row clearfix">
+        <div class="">
+          <form>
+            <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
+              <%= f.text_field :username, placeholder:"Name", required:true %>
             </div>
-            <div class="group">
-              <%= f.label :password, for:"pass", class:"label" %>
-              <% if @minimum_password_length %>
-                <em>(<%= @minimum_password_length %> characters minimum)</em>
-              <% end %>
-              <%= f.password_field :password, autocomplete: "new-password", id:"pass", class:"input" %>
+            <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"Email", required:true %>
             </div>
-            <div class="group">
-              <%= f.label :password_confirmation, for:"pass", class:"label" %>
-              <%= f.password_field :password_confirmation, autocomplete: "new-password", id:"pass", class:"input" %>
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %>
+            <div class="input_field"><span><i aria-hidden="true" class="fa fa-lock"></i></span>
+              <%= f.password_field :password, autocomplete: "current-password", placeholder:"Password", required:true %>
             </div>
-            <div class="group">
-              <%= f.submit "Sign up", class:"button" %>
+            <div class="input_field"><span><i aria-hidden="true" class="fa fa-lock"></i></span>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"Repeat Password", required:true %>
             </div>
-          <% end %>
-          <div class="hr"></div>
+            <%= f.submit "Sign up" %>
+            <div>
+              <%= render "users/shared/links" %>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
-</div>
+<%end%>

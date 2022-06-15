@@ -1,28 +1,12 @@
-<div class="container ">
+<h2>Forgot your password?</h2>
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= render "users/shared/error_messages", resource: resource %>
-  <div class="login-wrap">
-    <div class="login-html">
-      <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Forgot your password?</label>
-      <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
-      <div class="login-form">
-        <div class="sign-in-htm">
-          <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-            <div class="group mt-4">
-              <%= f.label :email,for:"user", class:"label" %>
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", id:"user", class:"input" %>
-            </div>
-            <div class="group mt-7">
-              <%= f.submit "Send me reset password instructions",class:"button" %>
-            </div>
-          <% end %>
-          <div class="hr mt-5"></div>
-          <div class="foot-lnk">
-            <div class="btn-primary">
-              <%= render "users/shared/links"%>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
-</div>
+  <div class="actions">
+    <%= f.submit "Send me reset password instructions" %>
+  </div>
+<% end %>
+<%= render "users/shared/links" %>
