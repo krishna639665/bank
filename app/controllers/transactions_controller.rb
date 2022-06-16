@@ -2,7 +2,13 @@ class TransactionsController < ApplicationController
 
     after_action :credit_transaction, only: [:create]
 
+    def index
+        @tnx = Transaction.find(params[:account_id])
+        @account = Account.find(params[:account_id])
+    end
+
     def show
+        @tnx = Transaction.find(params[:id])
 
     end
 
@@ -14,8 +20,14 @@ class TransactionsController < ApplicationController
         Transaction.transaction do
             @transaction_id=("%06d" % rand(0..999999)).to_s
             current_account = current_user.accounts.find(params[:account_id])
-            new_params = transaction_params.merge!(auto_generate)
+            new_params = transaction_params.merge!(additional_param)
             @tnx = current_account.transactions.create(new_params)
+            if @tnx.errors.empty?
+                flash[:notice] = "Transaction Successfull"
+                redirect_to account_transaction_path(params[:account_id],@tnx)
+            else
+                render 'new'
+            end
         end
     end
 
@@ -29,14 +41,14 @@ class TransactionsController < ApplicationController
         params.require(:transaction).permit(:account_number,:account_ifsc)
     end
 
-    def auto_generate
+    def additional_param
         transaction_status = "completed"
         return tnx_hash = {transaction_id: @transaction_id, transaction_status: transaction_status}
     end
 
     def credit_transaction
         credit_account = Account.find_by(account_number: account_params[:account_number])
-        new_params = transaction_params.merge!(auto_generate)
+        new_params = transaction_params.merge!(additional_param)
         new_params[:transaction_type] = "credited"
         Transaction.transaction do
             tnx = credit_account.transactions.create(new_params)

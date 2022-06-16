@@ -17,36 +17,22 @@
       </li>
       <li>
         <span>Total Transaction</span>
-        <span class="card__info__stats">20</span>
+        <span class="card__info__stats"><%=account.transactions.count%></span>
       </li>
     </ul>
     <div class="card__action">
       <%# <button class="card__action__button card__action--follow">Update</button> %>
       <%= link_to 'Update', edit_account_path(account), class:"card__action__button card__action--follow"%>
-      <button class="card__action__button card__action--message">Money Transfer</button>
+      <%= link_to 'Money Transfer', new_account_transaction_path(account), class:"card__action__button card__action--message"%>
+      <%# <button class="card__action__button card__action--message">Money Transfer</button> %>
     </div>
+
+    
     <div class="card__action">
       <button class="card__action__button card__action--follow mt-3">Deposit</button>
-      <button class="card__action__button card__action--message mt-3">Account History</button>
+      <%= link_to 'Account History', account_transactions_path(account), class:"card__action__button card__action--message mt-3"%>
     </div>
   </div>
   <br>
-  <div class="card">
-    <div class="card__text">
-      <ul class="card__info">
-        <li>
-          <span>Tnxs ID</span>
-          <span class="card__info__stats"><%=account.account_number%></span>
-        </li>
-        <li>
-          <span>Type</span>
-          <span class="card__info__stats">Credit</span>
-        </li>
-        <li>
-          <span>Amount</span>
-          <span class="card__info__stats">20</span>
-        </li>
-      </ul>
-    </div>
-  </div>
+  
 </main>
