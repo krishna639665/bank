@@ -1,23 +1,18 @@
 <%= stylesheet_link_tag "payment-gateway", "data-turbo-track": "reload" %>
-<%# payment gateway card model for reference %>
-<%# <div class="container">
-    <div class="card p-center">
-            <div class="top">
-                <h3>Enter Details</h3>
-                <hr>
-            </div>
-            <div class="card-details"> <input type="text" name="account_number" placeholder="0000 0000 0000 0000" data-slots="0" data-accept="\d" size="19"> <span>Account Number</span> <i class="fa fa-credit-card"></i> </div>
-            <div class="card-details mt-3"> <input type="text" name="account_ifsc" placeholder="SWISS0001102" data-slots="0" data-accept="\d" size="19"> <span>IFSC</span> <i class="fa fa-credit-card"></i> </div>
-            <div class="card-details mt-25"> <input type="text" placeholder="Enter cardholder's full name"> <span>Account Holder Name</span> </div>
-            <div class="card-details mt-3"> <input type="text" name="amount" placeholder="100.00" data-slots="0" data-accept="\d" size="19"> <span>Amount</span> <i class="fa fa-credit-card"></i> </div>
-            
-            <div class="button mt-4"> <button type="submit">Confirm & Pay</button> </div>
-        </div>
-    </div>
-</div> %>
-
-<%= form_with(model: @tnx, url: account_transactions_path)  do |form|  %>
+<%= form_with(model: @tnx, url: account_transactions_path, local: true)  do |form|  %>
 <div class="container">
+<% if @tnx.errors.any?%>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <h4 class="alert-heading">The following error prevented the article from begin saved!</h4>
+    <ul>
+      <% @tnx.errors.full_messages.each do |msg|%>
+      <%# <%binding.break%> %>
+        <li><%=flash[:notice] = msg%></li>
+      <%end%>
+    </ul>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<%end%>
     <div class="card p-center">
             <div class="top">
                 <h3>Enter Details</h3>
@@ -34,13 +29,16 @@
                     <i class="fa fa-credit-card"></i> 
                 </div>
                 <div class="card-details mt-3">
-                    <%= form.text_field :name, placeholder:"Enter cardholder's full name",size:"19" %>
+                    <%= form.text_field :name, placeholder:"Enter full name",size:"19" %>
                     <span>Account Holder Name</span> 
                 </div>
                 <%= form.hidden_field :transaction_type, value: "debited" %>
                 <div class="card-details mt-3">
                     <%= form.text_field :transaction_amount, placeholder:"100.00",size:"19" %>
-                    <span>Amount</span> 
+                    <span>Amount</span>
+                </div>
+                <div class="text-danger">
+                  <%= @tnx.errors.messages[:transaction_amount].join(', ')%>
                 </div>
                 <div class="button mt-4">
                     <button>

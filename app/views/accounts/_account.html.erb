@@ -21,18 +21,17 @@
       </li>
     </ul>
     <div class="card__action">
-      <%# <button class="card__action__button card__action--follow">Update</button> %>
       <%= link_to 'Update', edit_account_path(account), class:"card__action__button card__action--follow"%>
       <%= link_to 'Money Transfer', new_account_transaction_path(account), class:"card__action__button card__action--message"%>
-      <%# <button class="card__action__button card__action--message">Money Transfer</button> %>
     </div>
-
-    
     <div class="card__action">
       <button class="card__action__button card__action--follow mt-3">Deposit</button>
       <%= link_to 'Account History', account_transactions_path(account), class:"card__action__button card__action--message mt-3"%>
     </div>
   </div>
   <br>
-  
 </main>
+
+
+
+
