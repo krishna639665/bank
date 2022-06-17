@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag "home", "data-turbo-track": "reload" %>
+<%= stylesheet_link_tag "home" %>
 <header>
   <nav class="navbar">
     <div class="navbar-brand">
@@ -11,6 +11,7 @@
         <li> <%= link_to 'Dashboard', admin_path %></li>
         <li> <%= link_to 'Users', admin_users_path%></li>
         <li> <%= link_to 'Accounts', admin_accounts_path %></li>
+        <li><%= link_to 'Transactions', admin_transactions_path %> </li>
       </ul>
     </div>
     <div class="btn-primary">

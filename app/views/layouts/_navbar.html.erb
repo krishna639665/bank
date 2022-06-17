@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag "home", "data-turbo-track": "reload" %>
+<%= stylesheet_link_tag "home" %>
 <header>
   <nav class="navbar">
     <div class="navbar-brand">
@@ -12,8 +12,7 @@
         <li><a href="#">About</a></li>
         <li><%= link_to 'Blog', blog_path %></li>
         <% if user_signed_in? && !(current_user.accounts.empty?) %>
-          <% @account = current_user.accounts.ids%>
-          <li><%= link_to 'My_Account', account_path(@account)%></li>
+          <li><%= link_to 'My_Account', accounts_path %></li>
         <% end %>
       </ul>
     </div>

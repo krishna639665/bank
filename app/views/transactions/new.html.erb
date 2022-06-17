@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag "payment-gateway", "data-turbo-track": "reload" %>
+<%= stylesheet_link_tag "payment-gateway" %>
 <%# payment gateway card model for reference %>
 <%# <div class="container">
     <div class="card p-center">
@@ -15,43 +15,39 @@
         </div>
     </div>
 </div> %>
-
 <%= form_with(model: @tnx, url: account_transactions_path)  do |form|  %>
-<div class="container">
+  <div class="container">
     <div class="card p-center">
-            <div class="top">
-                <h3>Enter Details</h3>
-                <hr>
-            </div>
-                <div class="card-details">
-                    <%= form.text_field :account_number, placeholder:"0000 0000 0000 0000",size:"19" %>
-                    <span>Account Number</span>
-                    <i class="fa fa-credit-card"></i>
-                </div>
-                <div class="card-details mt-3">
-                    <%= form.text_field :account_ifsc, placeholder:"SWISS0001102",size:"19" %>
-                    <span>IFSC</span> 
-                    <i class="fa fa-credit-card"></i> 
-                </div>
-                <div class="card-details mt-3">
-                    <%= form.text_field :name, placeholder:"Enter cardholder's full name",size:"19" %>
-                    <span>Account Holder Name</span> 
-                </div>
-                <%= form.hidden_field :transaction_type, value: "debited" %>
-                <div class="card-details mt-3">
-                    <%= form.text_field :transaction_amount, placeholder:"100.00",size:"19" %>
-                    <span>Amount</span> 
-                </div>
-                <div class="button mt-4">
-                    <button>
-                    Confirm & Pay
-                    <%form.submit%>
-                    </button>
-                </div>
-        </div> 
+      <div class="top">
+        <h3>Enter Details</h3>
+        <hr>
+      </div>
+      <div class="card-details">
+        <%= form.text_field :account_number, placeholder:"0000 0000 0000 0000",size:"19" %>
+        <span>Account Number</span>
+        <i class="fa fa-credit-card"></i>
+      </div>
+      <div class="card-details mt-3">
+        <%= form.text_field :account_ifsc, placeholder:"SWISS0001102",size:"19" %>
+        <span>IFSC</span>
+        <i class="fa fa-credit-card"></i>
+      </div>
+      <div class="card-details mt-3">
+        <%= form.text_field :name, placeholder:"Enter cardholder's full name",size:"19" %>
+        <span>Account Holder Name</span>
+      </div>
+      <%= form.hidden_field :transaction_type, value: "debited" %>
+      <div class="card-details mt-3">
+        <%= form.text_field :transaction_amount, placeholder:"100.00",size:"19" %>
+        <span>Amount</span>
+      </div>
+      <div class="button mt-4">
+        <button>
+          Confirm & Pay
+          <%form.submit%>
+        </button>
+      </div>
     </div>
-</div>      
-<%end%>          
-
-
-
+  </div>
+</div>
+<%end%>
