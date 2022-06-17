@@ -5,6 +5,7 @@ class TransactionsController < ApplicationController
     def index
         @tnxs= Account.find(params[:account_id]).transactions
 
+
     end
 
     def show
@@ -60,22 +61,3 @@ class TransactionsController < ApplicationController
         return tnx_hash = {transaction_id: @transaction_id, transaction_status: transaction_status}
     end
 
-<<<<<<< HEAD
-    def credit_transaction
-        credit_account = Account.find_by(account_number: account_params[:account_number])
-        new_params = transaction_params.merge!(additional_param)
-        new_params[:transaction_type] = "credited"
-        Transaction.transaction do
-            credit_account.transactions.create(new_params)
-        end
-        
-    end
-
-
-    def perform_transfer(recipient, credit_amount, sender)
-
-    end
-
-=======
->>>>>>> yb4
-end
