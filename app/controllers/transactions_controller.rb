@@ -1,10 +1,9 @@
 class TransactionsController < ApplicationController
 
-    after_action :credit_transaction, only: [:create]
+     after_action :credit_transaction, only: [:create]
 
     def index
-        @tnx = Transaction.find(params[:account_id])
-        @account = Account.find(params[:account_id])
+        @tnxs= Account.find(params[:account_id]).transactions
     end
 
     def show
@@ -19,7 +18,7 @@ class TransactionsController < ApplicationController
     def create
         Transaction.transaction do
             @transaction_id=("%06d" % rand(0..999999)).to_s
-            current_account = current_user.accounts.find(params[:account_id])
+            current_account = Account.find(params[:account_id])
             new_params = transaction_params.merge!(additional_param)
             @tnx = current_account.transactions.create(new_params)
             if @tnx.errors.empty?
@@ -51,7 +50,7 @@ class TransactionsController < ApplicationController
         new_params = transaction_params.merge!(additional_param)
         new_params[:transaction_type] = "credited"
         Transaction.transaction do
-            tnx = credit_account.transactions.create(new_params)
+            credit_account.transactions.create(new_params)
         end
         
     end

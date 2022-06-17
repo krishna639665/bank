@@ -1,7 +1,9 @@
 class AccountsController < ApplicationController
     before_action :show_params, only: [:show,:edit,:update]
 
-
+    def index
+        @accounts = current_user.accounts
+    end
     def new
         @account = Account.new
     end
@@ -42,11 +44,10 @@ class AccountsController < ApplicationController
     end
 
     def auto_generate
-        account_number=rand.to_s[2..11].to_i
-        account_ifsc = ifsc = "SWISS0001102"
+        account_number=("%06d" % rand(0..999999)).to_s
+        account_ifsc = "SWISS0001102"
         account_balance = 0.0
         return acc_hash = {"account_number"=>account_number,"account_ifsc" =>account_ifsc,"account_balance" =>account_balance}
-
     end
 
 end
