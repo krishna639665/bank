@@ -1,13 +1,18 @@
 class AdminsController < ApplicationController
 
     def index
-        @users = User.all
+        @users = User.count
+        @accounts = Account.count
+        @transactions = Transaction.count
     end
     def users
         @users = User.all
     end
     def accounts
       @accounts = Account.all  
+    end
+    def transactions
+        @transactions = Transaction.all
     end
 
 end

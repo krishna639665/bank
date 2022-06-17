@@ -1,3 +1,4 @@
+
 <%= stylesheet_link_tag "registration-form", "data-turbo-track": "reload" %>
 <%= form_with(model: @account, local: true) do |form|  %>
   <div class="form_wrapper">
@@ -14,55 +15,80 @@
                   <%= form.text_field :first_name, placeholder:"First Name",required:true %>
                 </div>
               </div>
-              <div class="col_half">
-                <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                  <%= form.text_field :last_name, placeholder:"Last Name", required:true %>
-                </div>
+              <div class="text-danger">
+                <%= @account.errors.messages[:first_name].join(', ')%>
               </div>
             </div>
-            <div class="row clearfix">
-              <div class="col_half">
-                <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                  <%= form.text_field :nomine_name, placeholder:"Nomine Name", required:true %>
-                </div>
+            <div class="col_half">
+              <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                <%= form.text_field :last_name, placeholder:"Last Name" %>
               </div>
-              <div class="col_half">
-                <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                  <%= form.text_field :phone_number, placeholder:"Phone Number", required:true %>
-                </div>
+              <div class="text-danger">
+                <%= @account.errors.messages[:last_name].join(', ')%>
               </div>
-            </div>
-            <div class="row clearfix">
-              <div class="col_half">
-                <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                  <%= form.text_field :age, placeholder:"Age", required:true %>
-                </div>
-              </div>
-              <div class="col_half">
-                <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                  <%= form.text_field :adhar_number, placeholder:"Adhar Number", required:true %>
-                </div>
-              </div>
-            </div>
-            <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
-              <%= form.text_field :address, placeholder:"Address", required:true %>
-            </div>
-            <div class="input_field radio_option">
-              <%= form.radio_button :gender, 'male',id:"rd1" %>
-              <label for="rd1">Male</label>
-              <%= form.radio_button :gender, 'female',id:"rd2" %>
-              <label for="rd2">Female</label>
-            </div>
-            <div class="input_field select_option">
-              <%= form.select :account_type, ["Current Account", "Savings Account", "Salary Account", "Fixed Account"] %>
-              <div class="select_arrow"></div>
             </div>
           </div>
+          <div class="row clearfix">
+            <div class="col_half">
+              <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                <%= form.text_field :nomine_name, placeholder:"Nomine Name" %>
+              </div>
+              <div class="text-danger">
+                <%= @account.errors.messages[:nomine_name].join(', ')%>
+              </div>
+            </div>
+            <div class="col_half">
+              <div class="input_field"> <span><i aria-hidden="true" class="fa fa-phone"></i></span>
+                <%= form.text_field :phone_number, placeholder:"Phone Number" %>
+              </div>
+              <div class="text-danger">
+                <%= @account.errors.messages[:phone_number].join(', ')%>
+              </div>
+            </div>
+          </div>
+          <div class="row clearfix">
+            <div class="col_half">
+              <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                <%= form.text_field :age, placeholder:"Age" %>
+              </div>
+              <div class="text-danger">
+                <%= @account.errors.messages[:age].join(', ')%>
+              </div>
+            </div>
+            <div class="col_half">
+              <div class="input_field"> <span><i aria-hidden="true" class="fa fa-id-card"></i></span>
+                <%= form.text_field :adhar_number, placeholder:"Adhar Number" %>
+              </div>
+              <div class="text-danger">
+                <%= @account.errors.messages[:adhar_number].join(', ')%>
+              </div>
+            </div>
+          </div>
+          <div class="input_field radio_option">
+            <%= form.radio_button :gender, 'male',id:"rd1" %>
+            <label for="rd1">Male</label>
+            <%= form.radio_button :gender, 'female',id:"rd2" %>
+            <label for="rd2">Female</label>
+          </div>
+          <div class="text-danger">
+            <%= @account.errors.messages[:gender].join(', ')%>
+          </div>
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+            <%= form.text_field :address, placeholder:"Address" %>
+          </div>
+          <div class="text-danger">
+            <%= @account.errors.messages[:address].join(', ')%>
+          </div>
+          <div class="input_field select_option">
+            <%= form.select :account_type, ["Current Account", "Savings Account", "Salary Account", "Fixed Account"] %>
+            <div class="select_arrow"></div>
+          </div>
+          <div class="text-danger">
+            <%= @account.errors.messages[:account_type].join(', ')%>
+          </div>
           <%= form.submit "Register" %>
-        </form>
+        <% end %>
       </div>
     </div>
   </div>
 </div>
-<p class="credit">Developed by <a href="http://www.designtheway.com" target="_blank">Antier Solution</a></p>
-<%end%>

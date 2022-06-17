@@ -1,10 +1,10 @@
 class TransactionsController < ApplicationController
-    # after_action :credit_transaction, only: [:create]
-    
 
+    # after_action :credit_transaction, only: [:create]
     def index
         @tnx = Transaction.all
         @account = Account.find(params[:account_id])
+
     end
 
     def show
@@ -19,7 +19,7 @@ class TransactionsController < ApplicationController
     def create
         Transaction.transaction do
             @transaction_id=("%06d" % rand(0..999999)).to_s
-            current_account = current_user.accounts.find(params[:account_id])
+            current_account = Account.find(params[:account_id])
             new_params = transaction_params.merge!(additional_param)
             @amount = params[:transaction][:transaction_amount].to_f
             raise 'Insufficient Balance' if current_account.account_balance < @amount
@@ -59,5 +59,4 @@ class TransactionsController < ApplicationController
         transaction_status = "completed"
         return tnx_hash = {transaction_id: @transaction_id, transaction_status: transaction_status}
     end
-
 end

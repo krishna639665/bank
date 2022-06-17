@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag "account-show", "data-turbo-track": "reload" %>
+<%= stylesheet_link_tag "account-show" %>
 <main class="container">
   <div class="card">
     <img src="https://i.pravatar.cc/300" alt="User image" class="card__image justify-content-center" />
@@ -8,16 +8,16 @@
     </div>
     <ul class="card__info">
       <li>
+        <span>Account Type</span>
+        <span class="card__info__stats"><%=account.account_type%></span>
+      </li>
+      <li>
         <span>Account Number</span>
         <span class="card__info__stats"><%=account.account_number%></span>
       </li>
       <li>
         <span>Balance</span>
         <span class="card__info__stats"><%=account.account_balance%></span>
-      </li>
-      <li>
-        <span>Total Transaction</span>
-        <span class="card__info__stats"><%=account.transactions.count%></span>
       </li>
     </ul>
     <div class="card__action">
