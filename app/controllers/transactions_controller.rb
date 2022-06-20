@@ -61,3 +61,4 @@ class TransactionsController < ApplicationController
         return tnx_hash = {transaction_id: @transaction_id, transaction_status: transaction_status}
     end
 
+end
