@@ -1,16 +1,25 @@
-<h2>Resend unlock instructions</h2>
-
 <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="form_wrapper">
+    <div class="form_container">
+      <div class="title_container">
+        <h2>Resend unlock instructions</h2>
+      </div>
+      <div class="row clearfix">
+        <div class="">
+          <form>
+            <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
+            </div>
+            <div class="text-danger">
+              <%= resource.errors.messages[:email].join(', ')%>
+            </div>
+            <%= f.submit "Resend unlock instructions" %>
+            <div>
+              <%= render "users/shared/links" %>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Resend unlock instructions" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+<%end%>

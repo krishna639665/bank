@@ -1,12 +1,25 @@
-<h2>Forgot your password?</h2>
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="form_wrapper">
+    <div class="form_container">
+      <div class="title_container">
+        <h2>Forgot your password?</h2>
+      </div>
+      <div class="row clearfix">
+        <div class="">
+          <form>
+            <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
+              <%= f.text_field :username, autofocus: true, autocomplete: "username", placeholder: "username" %>
+            </div>
+            <div class="text-danger">
+              <%= resource.errors.messages[:username].join(', ')%>
+            </div>
+            <%= f.submit "Send me reset password instructions" %>
+            <div>
+              <%= render "users/shared/links" %>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-<%= render "users/shared/links" %>
+<%end%>
