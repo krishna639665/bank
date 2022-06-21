@@ -35,3 +35,20 @@ en:
       models:
         account:
           blank: "is required"
+        user:
+          attributes:
+            email:
+              blank: "Please Specify an Email id"
+              taken: "Email id Already exitst"
+              invalid: "Please Specify a valid Email id"
+            username:
+              blank: "Please Specify Username"
+              taken: "Username Already exitst"
+              invalid: "Please Specify a valid Username"
+            password:
+              blank: "Please Specify a Password"
+              confirmation: "Password does not match"
+            password_confirmation:
+              blank: "Please Specify a Password Confirmation"
+            current_password:
+              balnk: "Please Specify a Password"

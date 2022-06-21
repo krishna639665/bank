@@ -9,10 +9,16 @@
         <div class="">
           <form>
             <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-              <%= f.text_field :username, placeholder:"Name", required:true %>
+              <%= f.text_field :username, placeholder:"Name", required:true, multiline: true %>
+            </div>
+            <div class="text-danger">
+              <%=resource.errors.messages[:username].join(', ')%>
             </div>
             <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
               <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"Email", required:true %>
+            </div>
+            <div class="text-danger">
+              <%= resource.errors.messages[:email].join(', ')%>
             </div>
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
               <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
@@ -23,12 +29,21 @@
             <div class="input_field"><span><i aria-hidden="true" class="fa fa-lock"></i></span>
               <%= f.password_field :password, autocomplete: "new-password", placeholder:"New Password", required:true %>
             </div>
+            <div class="text-danger">
+              <%= resource.errors.messages[:password].join(', ')%>
+            </div>
             <div class="input_field"><span><i aria-hidden="true" class="fa fa-lock"></i></span>
               <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"Repeat Password", required:true %>
+            </div>
+            <div class="text-danger">
+              <%= resource.errors.messages[:password_confirmation].join(', ')%>
             </div>
             <i>(we need your current password to confirm your changes)</i>
             <div class="input_field"><span><i aria-hidden="true" class="fa fa-lock"></i></span>
               <%= f.password_field :current_password, autocomplete: "current-password", placeholder:"Current Password", required:true %>
+            </div>
+            <div class="text-danger">
+              <%= resource.errors.messages[:current_password].join(', ')%>
             </div>
             <%= f.submit "Update" %>
             <div>
