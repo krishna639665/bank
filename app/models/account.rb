@@ -1,7 +1,7 @@
 class Account < ApplicationRecord
-
     belongs_to :user
     has_many :transactions
+    belongs_to :card
 
     validates :first_name, presence: true, length: { minimum: 2, maximum:15, message: 'minimum 2 ' }
     validates :nomine_name, presence: true
