@@ -11,6 +11,11 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'     
     resources :accounts do
       resources :transactions, only: [:index,:show,:new, :create]
+      resources :deposits, only: [:new, :create,:show]
+      resources :cards, only: [:new, :create,:show]
+      scope(path_names: { new: 'new'}) do
+        resources :beneficiaries, path: 'beneficiarien',only: [:new, :create,:show]
+      end
     end
   end
 end

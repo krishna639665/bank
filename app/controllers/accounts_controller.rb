@@ -44,7 +44,7 @@ class AccountsController < ApplicationController
     end
 
     def auto_generate
-        account_number=("%06d" % rand(0..999999)).to_s
+        account_number=("%012d" % rand(0..999999999999)).to_s
         account_ifsc = "SWISS0001102"
         account_balance = 0.0
         return acc_hash = {"account_number"=>account_number,"account_ifsc" =>account_ifsc,"account_balance" =>account_balance}

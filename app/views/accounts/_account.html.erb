@@ -1,10 +1,9 @@
 <%= stylesheet_link_tag "account-show" %>
 <main class="container">
   <div class="card">
-    <img src="https://i.pravatar.cc/300" alt="User image" class="card__image justify-content-center" />
     <div class="card__text">
       <h2><%=account.first_name + account.last_name%></h2>
-      <p>Enjoy your banking from the comfort of HOME</p>
+      <p>Enjoy banking from the comfort of HOME</p>
     </div>
     <ul class="card__info">
       <li>
@@ -21,12 +20,23 @@
       </li>
     </ul>
     <div class="card__action">
-      <%= link_to 'Update', edit_account_path(account), class:"card__action__button card__action--follow"%>
-      <%= link_to 'Money Transfer', new_account_transaction_path(account), class:"card__action__button card__action--message"%>
+      <%= link_to 'Update ', edit_account_path(account), class:"card__action__button card__action--follow"%>
+      <%= link_to 'Benefi..Transfer', new_account_beneficiary_path(account), class:"card__action__button card__action--message"%>
     </div>
     <div class="card__action">
-      <button class="card__action__button card__action--follow mt-3">Deposit</button>
+      <%= link_to 'Deposit Amount', new_account_deposit_path(account), class:"card__action__button card__action--follow mt-3"%>
       <%= link_to 'Account History', account_transactions_path(account), class:"card__action__button card__action--message mt-3"%>
+    </div>
+
+    <div class="card__action">
+    <%if account.card == nil%>
+      <%= link_to 'Generate ATM', new_account_card_path(account), class:"card__action__button card__action--follow mt-3"%>
+    <%else%>
+    <%id = account.card.id%>
+      <%= link_to 'View ATM', account_card_path(account.id,id), class:"card__action__button card__action--follow mt-3"%>
+    <%end%>
+      <%= link_to 'Cards Transfer', account_transactions_path(account), class:"card__action__button card__action--message mt-3"%>
+    </div>
     </div>
   </div>
   <br>
