@@ -6,8 +6,4 @@ class TransactionsController < ApplicationController
     def show
         @tnx = Transaction.find(params[:id])
     end
-
-
-end
-
 end

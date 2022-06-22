@@ -1,5 +1,5 @@
 class Card < ApplicationRecord
-  has_one :account
+  belongs_to :account
   has_many :transactions, :through => :account
 
   validates :number, presence: true

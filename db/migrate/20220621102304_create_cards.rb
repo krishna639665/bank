@@ -4,6 +4,7 @@ class CreateCards < ActiveRecord::Migration[7.0]
       t.string :number
       t.string :cvv
       t.string :pin
+      t.belongs_to :account, foreign_key: true
       t.timestamps
     end
   end
