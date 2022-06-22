@@ -7,5 +7,5 @@ class TransactionsController < ApplicationController
         @tnx = Transaction.find(params[:id])
     end
 
-
 end
+

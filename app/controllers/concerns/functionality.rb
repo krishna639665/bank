@@ -21,4 +21,13 @@ module Functionality
         recipient_account.transactions.create(cred_details)
         return tnx
     end
+
+    def valid_card_transfers(account_id, pin)
+        account = Account.find(account_id)
+        return true if account.card.pin == pin
+    end
+
+    def card_check(card_number)
+        return true if Card.find_by(number: card_number) != nil
+    end
 end
