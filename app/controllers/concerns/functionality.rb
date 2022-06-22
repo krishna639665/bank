@@ -8,6 +8,7 @@ module Functionality
 
     def deposit_amount(account_number,amount)
         account = Account.find_by(account_number: account_number).amount += amount
+        account.save
     end
 
     def transaction_history(sender,recipient,amount)

@@ -13,7 +13,9 @@
           <th>Name</th>
           <th>Email</th>
           <th>Created</th>
-          <th>Actions</th>
+          <% if Account.exists? %>
+            <th>Actions</th>
+          <% end %>
         </tr>
       </thead>
     </table>
