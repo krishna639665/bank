@@ -1,0 +1,32 @@
+<%= stylesheet_link_tag "payment-gateway" %>
+<%= form_with(model: @card,method: :post, url: account_card_save_pin_path)  do |form|  %>
+  <div class="container">
+    <div class="card p-center">
+      <div class="top">
+        <h3>Set Card Pin</h3>
+        <hr>
+      </div>
+      <div class="card-details mt-3">
+        <%= form.text_field :pin, placeholder:"00 00 00",size:"6" %>
+        <span>Enter pin</span>
+      </div>
+      <div class="card-details mt-3">
+        <%= form.text_field :pin2, placeholder:"00 00 00",size:"6" %>
+        <span>Enter Again</span>
+      </div>
+      <div class="button mt-4">
+        <button>
+          Set pin
+          <%form.submit%>
+        </button>
+      </div>
+      <div class="button mt-4">
+        <button>
+          Cancel & Back
+          <%link_to account_card_path(@card.account_id,@card)%>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<%end%>

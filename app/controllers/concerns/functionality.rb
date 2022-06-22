@@ -7,7 +7,7 @@ module Functionality
     end
 
     def deposit_amount(account_number,amount)
-        account = Account.find_by(account_number: account_number).amount += amount
+        account = Account.find_by(account_number: account_number).amount += amount 
     end
 
     def transaction_history(sender,recipient,amount)
@@ -19,5 +19,14 @@ module Functionality
         cred_details = {transaction_id: transaction_id, transaction_type:"credited",transaction_status: "completed", transaction_amount: amount}
         recipient_account.transactions.create(cred_details)
         return tnx
+    end
+
+    def valid_card_transfers(account_id, pin)
+        account = Account.find(account_id)
+        return true if account.card.pin == pin
+    end
+
+    def card_check(card_number)
+        return true if Card.find_by(number: card_number) != nil
     end
 end

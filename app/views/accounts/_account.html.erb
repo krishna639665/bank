@@ -35,7 +35,9 @@
     <%id = account.card.id%>
       <%= link_to 'View ATM', account_card_path(account.id,id), class:"card__action__button card__action--follow mt-3"%>
     <%end%>
-      <%= link_to 'Cards Transfer', account_transactions_path(account), class:"card__action__button card__action--message mt-3"%>
+    <% unless account.card.pin.nil?%>
+      <%= link_to 'Cards Transfer', new_account_card_transfer_path(account), class:"card__action__button card__action--message mt-3"%>
+    <%end%>
     </div>
     </div>
   </div>
