@@ -1,6 +1,11 @@
 class DepositsController < ApplicationController
     include Functionality
     def new
+        @account = Account.find(params[:account_id])
+        unless current_user.accounts.include?(@account)
+            flash[:notice] = "You are not Autherized to access!"
+            redirect_to root_path
+        end
     end
 
     def create

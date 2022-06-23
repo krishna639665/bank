@@ -2,6 +2,11 @@ class CardTransfersController < ApplicationController
     include Functionality
 
     def new
+        @account = Account.find(params[:account_id])
+        unless current_user.accounts.include?(@account)
+            flash[:notice] = "You are not Autherized to access!"
+            redirect_to root_path
+        end
     end
 
     def create
@@ -14,12 +19,9 @@ class CardTransfersController < ApplicationController
         raise "Invalid account number" if recipient_account.nil?
         transaction_amount = card_params[:transaction_amount].to_f
         if transaction_amount <= sender_account.account_balance and recipient_account.id != sender_account.id  
-            binding.break
             recipient_account.account_balance = recipient_account.account_balance + transaction_amount
-            binding.break
             recipient_account.save
             sender_account.account_balance = sender_account.account_balance - transaction_amount
-            binding.break
             sender_account.save
             tnx = transaction_history(sender_account.id,recipient_account.id,transaction_amount)
             redirect_to account_transaction_path(sender_account.id,tnx)

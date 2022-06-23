@@ -9,7 +9,7 @@ class AccountsController < ApplicationController
     end
 
     def show
-        unless current_user.accounts.include?(@account)
+        unless (current_user.accounts.include?(@account)) || (current_user.has_role? :admin)
             flash[:notice] = "You are not Autherized to access!"
             redirect_to root_path
         end
@@ -45,7 +45,12 @@ class AccountsController < ApplicationController
 
     private
     def show_params
-        @account = Account.find(params[:id])
+        if !(Account.exists?(params[:id]))
+            flash[:notice] = "You are not Autherized to access!"
+            redirect_to root_path
+        else
+            @account = Account.find(params[:id])
+        end
     end
 
     def account_params
