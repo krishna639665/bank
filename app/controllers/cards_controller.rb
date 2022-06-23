@@ -5,7 +5,6 @@ class CardsController < ApplicationController
 
     def new
         @card = Card.new
-        binding
     end
 
     def show
