@@ -1,6 +1,48 @@
-<% unless params[:format].nil? %>
-  <% @user = User.find(params[:format])%>
-  <%= render @user.accounts %>
-<% else %>
-  <%= render @accounts %>
-<% end %>
+<%# <% unless params[:format].nil? %>
+<%# <% @user = User.find(params[:format])%>
+<%# <%= render @user.accounts %>
+<%# <% else %>
+<%= stylesheet_link_tag "tnx-history"%>
+<div class="mt-4" style= "margin-left: 84%; position: absolute; " >
+  <%= link_to "Back", :back, class:"btn-primary" %>
+</div>
+<section>
+  <!--for demo wrap-->
+  <h1>All Accounts</h1>
+  <div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+          <th>A.C Holder Name</th>
+          <th>Account type</th>
+          <th>Account No.</th>
+          <th>Balance</th>
+          <th>Created</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <%@accounts.each do |account|%>
+          <tr>
+            <td><%= account.first_name + account.last_name %></td>
+            <td><%= account.account_type %></td>
+            <td><%= account.account_number %></td>
+            <td><%= account.account_balance %></td>
+            <td><%= account.created_at.strftime("%D, %T") %></td>
+            <td> </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</section>
+<div class="made-with-love">
+  Made with
+  <i>♥</i> by
+  <a target="_blank" href="https://www.instagram.com/yadhu_krish_na/">Yadhu & Krishna</a>
+</div>
+<%# <% end %>
