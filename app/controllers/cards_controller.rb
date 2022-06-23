@@ -8,7 +8,20 @@ class CardsController < ApplicationController
     end
 
     def show
-        @card = Card.find(params[:id])
+        @account = Account.find(params[:account_id])
+        if !(current_user.accounts.include?(@account))
+            flash[:notice] = "You are not Autherized to access!"
+            redirect_to root_path
+        else
+            @card = Card.find(params[:id])
+        end
+    end
+
+    if !(Account.exists?(params[:id]))
+        flash[:notice] = "You are not Autherized to access!"
+        redirect_to root_path
+    else
+        @account = Account.find(params[:id])
     end
 
     def generate_card
