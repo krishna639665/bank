@@ -9,9 +9,18 @@ class AccountsController < ApplicationController
     end
 
     def show
+        unless current_user.accounts.include?(@account)
+            flash[:notice] = "You are not Autherized to access!"
+            redirect_to root_path
+        end
+        
     end
 
     def edit
+        unless current_user.accounts.include?(@account)
+            flash[:notice] = "You are not Autherized to access!"
+            redirect_to root_path
+        end
     end
 
     def create
