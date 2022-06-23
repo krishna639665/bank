@@ -1,18 +1,20 @@
 <%= stylesheet_link_tag "tnx-history"%>
+<div class="mt-4" style= "margin-left: 84%; position: absolute; " >
+  <%= link_to "Back", :back, class:"btn-primary" %>
+</div>
 <section>
   <!--for demo wrap-->
-  <div style= "margin-left: 84%; position: absolute; " >
-    <%= link_to "Back", :back, class:"btn-primary" %>
-  </div>
   <h1>All Users</h1>
   <div class="tbl-header">
     <table cellpadding="0" cellspacing="0" border="0">
       <thead>
         <tr>
-          <th>Id</th>
           <th>Name</th>
-          <th>Email</th>
+          <th>Email Address</th>
           <th>Created</th>
+          <th>Current login</th>
+          <th>Last login</th>
+          <th>Total Acc</th>
           <% if Account.exists? %>
             <th>Actions</th>
           <% end %>
@@ -25,12 +27,14 @@
       <tbody>
         <%@users.each do |user|%>
           <tr>
-            <td><%= user.id %></td>
             <td><%= user.username%></td>
             <td><%= user.email%></td>
-            <td><%= user.created_at%></td>
+            <td><%= user.created_at.strftime("%D, %T")%></td>
+            <td><%= user.current_sign_in_at%></td>
+            <td><%= user.last_sign_in_at%></td>
+            <td class="text-center"><%= user.accounts.count%></td>
             <% unless user.accounts.empty? %>
-              <td ><%= link_to "Show account", admin_accounts_path(user),class:"btn-primary text-center"  %></td>
+              <td ><%= link_to "Show account", account_path(user.account_ids),class:"btn btn-link"  %></td>
             <% end %>
           </tr>
         <% end %>

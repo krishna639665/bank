@@ -1,19 +1,21 @@
-<%= stylesheet_link_tag "tnx-history" %>
+<%= stylesheet_link_tag "tnx-history"%>
 <div class="mt-4" style= "margin-left: 84%; position: absolute; " >
   <%= link_to "Back", :back, class:"btn-primary" %>
 </div>
 <section>
   <!--for demo wrap-->
-  <h1>Account Transactions</h1>
+  <h1>All Cards</h1>
   <div class="tbl-header">
     <table cellpadding="0" cellspacing="0" border="0">
       <thead>
         <tr>
-          <th>Tnx ID</th>
-          <th>Tnx Type</th>
-          <th>Tnx Amount</th>
-          <th>Tnx Status</th>
-          <th>Tnx Created</th>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Card No.</th>
+          <th>Card Cvv</th>
+          <th>Card Pin</th>
+          <th>Created</th>
+          <th>Status</th>
         </tr>
       </thead>
     </table>
@@ -21,16 +23,18 @@
   <div class="tbl-content">
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
-        <% @transactions.each do |tnx|%>
+        <%@cards.each do |card|%>
           <tr>
-            <td> <%=tnx.transaction_id%> </td>
-            <td> <%=tnx.transaction_type%></td>
-            <td> <%=tnx.transaction_amount%></td>
-            <td> <%=tnx.transaction_status%></td>
-            <td> <%=tnx.created_at.strftime("%D, %T")%></td>
+            <td><%= card.id %></td>
+            <td><%= card.account.first_name %></td>
+            <td><%= card.number %></td>
+            <td><%= card.cvv %></td>
+            <td><%= card.pin %></td>
+            <td><%= card.created_at.strftime("%B %d, %Y") %></td>
+            <td> </td>
           </tr>
-        </tbody>
-      <%end%>
+        <% end %>
+      </tbody>
     </table>
   </div>
 </section>

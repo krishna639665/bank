@@ -1,4 +1,7 @@
 <%= stylesheet_link_tag "account-show" %>
+<div class="mt-5" style= "margin-left: 84%; position: absolute;" >
+  <%= link_to "Back", :back, class:"btn-primary" %>
+</div>
 <main class="container">
   <div class="card">
     <div class="card__text">
@@ -27,23 +30,18 @@
       <%= link_to 'Deposit Amount', new_account_deposit_path(account), class:"card__action__button card__action--follow mt-3"%>
       <%= link_to 'Account History', account_transactions_path(account), class:"card__action__button card__action--message mt-3"%>
     </div>
-
     <div class="card__action">
-    <%if account.card == nil%>
-      <%= link_to 'Generate ATM', new_account_card_path(account), class:"card__action__button card__action--follow mt-3"%>
-    <%else%>
-    <%id = account.card.id%>
-      <%= link_to 'View ATM', account_card_path(account.id,id), class:"card__action__button card__action--follow mt-3"%>
-    <%end%>
-    <% unless account.card.pin.nil?%>
-      <%= link_to 'Cards Transfer', new_account_card_transfer_path(account), class:"card__action__button card__action--message mt-3"%>
-    <%end%>
-    </div>
+      <%if account.card == nil%>
+        <%= link_to 'Generate ATM', new_account_card_path(account), class:"card__action__button card__action--follow mt-3"%>
+      <%else%>
+        <%id = account.card.id%>
+        <%= link_to 'View ATM', account_card_path(account.id,id), class:"card__action__button card__action--follow mt-3"%>
+      <%end%>
+      <% unless account.card.pin.nil?%>
+        <%= link_to 'Cards Transfer', new_account_card_transfer_path(account), class:"card__action__button card__action--message mt-3"%>
+      <%end%>
     </div>
   </div>
-  <br>
+</div>
+<br>
 </main>
-
-
-
-
