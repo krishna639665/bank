@@ -1,4 +1,7 @@
 <%= stylesheet_link_tag "payment-gateway" %>
+<div class="mt-4" style="margin-left: 84%; position: absolute; ">
+  <%= link_to "Back", :back, class: "btn-primary" %>
+</div>
 <%= form_with(model: @tnx, url: account_card_transfers_path)  do |form|  %>
   <div class="container">
     <div class="card p-center">
@@ -32,5 +35,4 @@
       </div>
     </div>
   </div>
-</div>
 <%end%>

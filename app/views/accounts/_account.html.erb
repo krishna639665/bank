@@ -6,7 +6,7 @@
   <div class="card">
     <div class="card__text">
       <h2><%=account.first_name + account.last_name%></h2>
-      <p>Enjoy banking from the comfort of HOME</p>
+      <p>Banking Made Easy</p>
     </div>
     <ul class="card__info">
       <li>
@@ -36,12 +36,10 @@
       <%else%>
         <%id = account.card.id%>
         <%= link_to 'View ATM', account_card_path(account.id,id), class:"card__action__button card__action--follow mt-3"%>
-      <%end%>
-      <% unless account.card.pin.nil?%>
-        <%= link_to 'Cards Transfer', new_account_card_transfer_path(account), class:"card__action__button card__action--message mt-3"%>
+        <% unless account.card.pin.nil?%>
+          <%= link_to 'Cards Transfer', new_account_card_transfer_path(account), class:"card__action__button card__action--message mt-3"%>
+        <%end%>
       <%end%>
     </div>
   </div>
-</div>
-<br>
 </main>

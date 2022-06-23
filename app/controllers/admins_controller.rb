@@ -1,5 +1,4 @@
 class AdminsController < ApplicationController
-
   def index
     @users = User.count
     @accounts = Account.count
@@ -12,7 +11,7 @@ class AdminsController < ApplicationController
   end
 
   def accounts
-    @accounts = Account.all  
+    @accounts = Account.all
   end
 
   def transactions
@@ -22,5 +21,4 @@ class AdminsController < ApplicationController
   def cards
     @cards = Card.all
   end
-
 end
