@@ -7,18 +7,18 @@ class AdminsController < ApplicationController
   end
 
   def users
-    @users = User.all
+    @pagy, @users = pagy(User.all,items:6)
   end
 
   def accounts
-    @accounts = Account.all
+    @pagy, @accounts = pagy(Account.all,items:6)
   end
 
   def transactions
-    @transactions = Transaction.all
+    @pagy, @transactions = pagy(Transaction.all,items:10)
   end
 
   def cards
-    @cards = Card.all
+    @pagy, @cards = pagy(Card.all,items:6)
   end
 end

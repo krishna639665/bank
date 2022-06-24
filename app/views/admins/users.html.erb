@@ -9,7 +9,7 @@
     <table cellpadding="0" cellspacing="0" border="0">
       <thead>
         <tr>
-          <th>Name</th>
+          <th>User Name</th>
           <th>Email Address</th>
           <th>Created</th>
           <th>Current login</th>
@@ -34,7 +34,7 @@
             <td><%= user.last_sign_in_at%></td>
             <td class="text-center"><%= user.accounts.count%></td>
             <% unless user.accounts.empty? %>
-              <td ><%= link_to "Show account", account_path(user.account_ids),class:"btn btn-link"  %></td>
+              <td ><%= link_to "Show account", accounts_path(user.account_ids),class:"btn btn-link"  %></td>
             <% end %>
           </tr>
         <% end %>
@@ -42,6 +42,9 @@
     </table>
   </div>
 </section>
+<div style="margin-left: 36%;">
+  <%== pagy_bootstrap_combo_nav_js(@pagy) %>
+</div>
 <div class="made-with-love">
   Made with
   <i>♥</i> by
