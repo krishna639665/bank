@@ -12,14 +12,14 @@ class AccountsController < ApplicationController
   def show
     unless (current_user.accounts.include?(@account)) || (current_user.has_role? :admin)
       flash[:notice] = "You are not Autherized to access!"
-      render 'pages/404'
+      render "pages/404"
     end
   end
 
   def edit
     unless (User.first == current_user || current_user.accounts.include?(@account))
       flash[:notice] = "You are not Autherized to access!"
-      render 'pages/404'
+      render "pages/404"
     end
   end
 
@@ -35,7 +35,6 @@ class AccountsController < ApplicationController
   end
 
   def update
-
     if @account.update(account_params)
       flash[:notice] = "Account updated successfully"
       redirect_to @account
@@ -49,7 +48,7 @@ class AccountsController < ApplicationController
   def show_params
     if !(Account.exists?(params[:id]))
       flash[:notice] = "You are not Autherized to access!"
-      redirect_to root_path
+      render "pages/404"
     else
       @account = Account.find(params[:id])
     end

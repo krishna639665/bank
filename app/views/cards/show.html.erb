@@ -1,9 +1,9 @@
 <%= stylesheet_link_tag "atm" %>
 <div class="mt-5" style= "margin-left: 84%; position: absolute;" >
   <%if @card.pin == nil%>
-    <%= link_to 'Set pin', account_card_setpin_path(@card.account_id,card.id), class:"btn-primary"%>
+    <%= link_to 'Set pin', account_card_setpin_path(@card.account_id,@card.id), class:"btn-primary"%>
   <% else %>
-    <%= link_to "Back", :back, class:"btn-primary" %>
+    <%= link_to "Back", account_path(@card.account_id), class:"btn-primary" %>
   <%end%>
 </div>
 <div class="wrapper">

@@ -1,1 +1,21 @@
-<%= render @accounts %>
+<%# <%= render @accounts %>
+<%= stylesheet_link_tag 'user-account' %>
+<div class="account-table" >
+  <h2><%= @accounts.first.first_name.camelcase %> All Accounts </h2>
+  <ul class="responsive-table ">
+    <li class="table-header">
+      <div class="col col-2">Account Type</div>
+      <div class="col col-3">Account Number</div>
+      <div class="col col-4">Account Balance</div>
+      <div class="col col-4">Account Details</div>
+    </li>
+    <% @accounts.each do |account| %>
+      <li class="table-row">
+        <div class="col col-2" data-label="Account Type"><%=account.account_type%></div>
+        <div class="col col-3" data-label="Account Number"><%=account.account_number%></div>
+        <div class="col col-4" data-label="Account Balance"><%=account.account_balance%></div>
+        <div class="col col-4" data-label="Show Account "><%=link_to "show account", account_path(account), class:"btn btn-outline-info" %></div>
+      </li>
+    <% end %>
+  </ul>
+</div>
