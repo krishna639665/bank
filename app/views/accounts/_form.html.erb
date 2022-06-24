@@ -80,7 +80,12 @@
             <%= @account.errors.messages[:address].join(', ')%>
           </div>
           <div class="input_field select_option">
-            <%= form.select :account_type, ["Current Account", "Savings Account", "Salary Account", "Fixed Account"] %>
+            <%ac_types = current_user.accounts.map{|ac| ac.account_type}%>
+            <%types = ["Current Account", "Savings Account", "Salary Account", "Fixed Account"]%>
+            <%for i in ac_types do%>
+              <%types.delete_if{|t| t==i}%>
+            <%end%>
+            <%= form.select :account_type, types %>
             <div class="select_arrow"></div>
           </div>
           <div class="text-danger">

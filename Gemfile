@@ -78,6 +78,10 @@ gem "cancancan", "~> 3.3"
 gem "rolify", "~> 6.0"
 gem "figaro"
 gem 'omniauth'
+gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection", "~> 1.0"
 gem "pagy", "~> 5.10"
+gem 'activerecord-session_store'
+
+
