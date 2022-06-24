@@ -9,17 +9,17 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :timeoutable, :trackable,
-         :omniauthable, omniauth_providers: [:google_oauth2],
+         :omniauthable, omniauth_providers: [:facebook,:google_oauth2],
          authentication_keys: [:login] 
          
 
 
   VALID_USERNAME_REGEX = /\A(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])/i
   VALID_PASSWORD = /(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}/
-  validates :username, presence: true, length: {minimum: 8, maximum: 20 },
-         format: { with: VALID_USERNAME_REGEX, message: 'cannot have special characters'  },
-         uniqueness: { case_sensitive: false }
-  validates :password, presence: true, format: {with: VALID_PASSWORD, message: 'week password'}
+  # validates :username, presence: true, length: {minimum: 8, maximum: 20 },
+        #  format: { with: VALID_USERNAME_REGEX, message: 'cannot have special characters'  },
+        #  uniqueness: { case_sensitive: false }
+  # validates :password, presence: true, format: {with: VALID_PASSWORD, message: 'week password'}
 
   
 
@@ -47,7 +47,7 @@ class User < ApplicationRecord
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
-      # user.password = Devise.friendly_token[0,20]
+      user.password = Devise.friendly_token[0,20]
       # user.username = auth.info.name   # assuming the user model has a name
    end
   end
