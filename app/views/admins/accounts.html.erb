@@ -28,7 +28,13 @@
             <td><%= account.account_number %></td>
             <td><%= account.account_balance %></td>
             <td><%= account.created_at.strftime("%D, %T") %></td>
-            <td> </td>
+            <td>
+              <% if account.status == true %>
+                Active
+              <% else %>
+                Inactive
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>

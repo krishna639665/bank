@@ -6,7 +6,7 @@
   <div class="pop-card" >
     <ul class="card__info">
       <li>
-        <span>Name</span>
+        <span>User Name</span>
         <span class="card__info__stats"><%=@user.username%></span>
       </li>
       <li>
@@ -29,11 +29,23 @@
       </li>
       <li>
         <span>Current login</span>
-        <span class="card__info__stats"><%= @user.current_sign_in_at %></span>
+        <span class="card__info__stats">
+          <% if  @user.current_sign_in_at?%>
+            <%= @user.current_sign_in_at %>
+          <% else %>
+            0:0:0
+          <% end %>
+        </span>
       </li>
       <li>
         <span>Last login</span>
-        <span class="card__info__stats"><%= @user.last_sign_in_at %></span>
+        <span class="card__info__stats">
+          <% if  @user.last_sign_in_at?%>
+            <%= @user.last_sign_in_at %>
+          <% else %>
+            0:0:0
+          <% end %>
+        </span>
       </li>
       <li>
         <span>Total Login </span>
@@ -45,43 +57,59 @@
       </li>
       <li>
         <span>Current login IP</span>
-        <span class="card__info__stats"><%= @user.current_sign_in_ip %></span>
+        <span class="card__info__stats">
+          <% if  @user.current_sign_in_ip?%>
+            <%= @user.current_sign_in_ip %>
+          <% else %>
+            nil
+          <% end %>
+        </span>
       </li>
       <li>
         <span>Last login IP</span>
-        <span class="card__info__stats"><%= @user.last_sign_in_ip %></span>
+        <span class="card__info__stats">
+          <% if  @user.last_sign_in_ip?%>
+            <%= @user.last_sign_in_ip %>
+          <% else %>
+            nil
+          <% end %>
+        </span>
       </li>
       <li>
         <button  onclick="openForm()">Total Account</button>
         <span class="card__info__stats"><%= @user.accounts.count %></span>
       </li>
     </ul>
-    <div  id="myCard">
-      <div class="popup-card" >
-        <button type="button" class="btn-close" onclick="closeForm()"></button>
-        <% @user.accounts.each do |account| %>
-          <ul class="card__info">
-            <li>
-              <span>Account Type</span>
-              <span class="card__info__stats"><%=account.account_type%></span>
-            </li>
-            <li>
-              <span>Account Number</span>
-              <span class="card__info__stats"><%=account.account_number%></span>
-            </li>
-            <li>
-              <span>Balance</span>
-              <span class="card__info__stats"><%=account.account_balance%></span>
-            </li>
-            <li>
-              <span>Card Number</span>
-              <span class="card__info__stats"><%=account.card.number%></span>
-            </li>
-            <li>
-              <span>Card  Cvv</span>
-              <span class="card__info__stats"><%=account.card.cvv%></span>
-            </li>
-          </ul>
+    <% unless @user.accounts.count == 0 %>
+      <div  id="myCard">
+        <div class="popup-card" >
+          <button type="button" class="btn-close" onclick="closeForm()"></button>
+          <% @user.accounts.each do |account| %>
+            <ul class="card__info">
+              <li>
+                <span>Account Type</span>
+                <span class="card__info__stats"><%=account.account_type%></span>
+              </li>
+              <li>
+                <span>Account Number</span>
+                <span class="card__info__stats"><%=account.account_number%></span>
+              </li>
+              <li>
+                <span>Balance</span>
+                <span class="card__info__stats"><%=account.account_balance%></span>
+              </li>
+              <% unless account.card.nil? %>
+                <li>
+                  <span>Card Number</span>
+                  <span class="card__info__stats"><%=account.card.number%></span>
+                </li>
+                <li>
+                  <span>Card  Cvv</span>
+                  <span class="card__info__stats"><%=account.card.cvv%></span>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
         <% end %>
       </div>
     </div>

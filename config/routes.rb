@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get 'admin/accounts', to: 'admins#accounts'
   get 'admin/transactions', to: 'admins#transactions'
   get 'admin/cards', to: 'admins#cards'
+  get 'admin/activations', to: 'admins#activation'
+  get 'admin/isactive/:id', to: "admins#active", as: "admin_isactive"
   devise_for :users,controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks',
     sessions: 'users/sessions',
