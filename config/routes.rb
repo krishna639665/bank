@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/blog', to: 'pages#blog'
   get '/admin', to: 'admins#index'
   get 'admin/users', to: 'admins#users'
+  get 'admin/user/:id', to: 'admins#show', as: 'admin_user'
   get 'admin/accounts', to: 'admins#accounts'
   get 'admin/transactions', to: 'admins#transactions'
   get 'admin/cards', to: 'admins#cards'
