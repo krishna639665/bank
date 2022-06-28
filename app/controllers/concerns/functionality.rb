@@ -2,12 +2,14 @@ module Functionality
     extend ActiveSupport::Concern
 
     def withrawal_amount(account_id, amount)
-        account =Account.find(account_id).amount -= amount
+        account =Account.find(account_id)
+        account.account_balance -= amount
         account.save
     end
 
-    def deposit_amount(account_number,amount)
-        account = Account.find_by(account_number: account_number).amount += amount
+    def deposit_amount(account_id,amount)
+        account = Account.find(account_id)
+        account.account_balance += amount
         account.save
     end
 

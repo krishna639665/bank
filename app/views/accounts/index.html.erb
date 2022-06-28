@@ -14,7 +14,11 @@
         <div class="col col-2" data-label="Account Type"><%=account.account_type%></div>
         <div class="col col-3" data-label="Account Number"><%=account.account_number%></div>
         <div class="col col-4" data-label="Account Balance"><%=account.account_balance%></div>
-        <div class="col col-4" data-label="Show Account "><%=link_to "show account", account_path(account), class:"btn btn-outline-info" %></div>
+        <%unless account.status == false%>
+          <div class="col col-4" data-label="Show Account "><%=link_to "show account", account_path(account), class:"btn btn-outline-info" %></div>
+        <%else%>
+          <p>Waiting for Activation</p>
+        <%end%>
       </li>
     <% end %>
   </ul>
