@@ -3,18 +3,16 @@
   <%= link_to "Back", :back, class:"btn-primary" %>
 </div>
 <section>
-  <!--for demo wrap-->
-  <h1>All Cards</h1>
+  <h1>Accounts Activation Request</h1>
   <div class="tbl-header">
     <table cellpadding="0" cellspacing="0" border="0">
       <thead>
         <tr>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Card No.</th>
-          <th>Card Cvv</th>
-          <th>Card Pin</th>
+          <th>A.C Holder Name</th>
+          <th>Account type</th>
+          <th>Account No.</th>
           <th>Created</th>
+          <th>Status</th>
         </tr>
       </thead>
     </table>
@@ -22,14 +20,15 @@
   <div class="tbl-content">
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
-        <%@cards.each do |card|%>
+        <%@accounts.each do |account|%>
           <tr>
-            <td><%= card.id %></td>
-            <td><%= card.account.first_name %></td>
-            <td><%= card.number %></td>
-            <td><%= card.cvv %></td>
-            <td><%= card.pin %></td>
-            <td><%= card.created_at.strftime("%B %d, %Y") %></td>
+            <td><%= account.first_name + account.last_name %></td>
+            <td><%= account.account_type %></td>
+            <td><%= account.account_number %></td>
+            <td><%= account.created_at.strftime("%D, %T") %></td>
+            <td>
+              <%= link_to 'Active' , admin_isactive_path(account.id), class:"btn btn-link"%>
+            </td>
           </tr>
         <% end %>
       </tbody>
