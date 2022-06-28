@@ -6,11 +6,15 @@ class AccountsController < ApplicationController
   end
 
   def new
+    if current_user.accounts.count == 4
+      flash[:alert] = "You have created the maximum number of accounts!"
+      redirect_to accounts_path
+    end
     @account = Account.new
   end
 
   def show
-    unless (current_user.accounts.include?(@account)) || (current_user.has_role? :admin)
+    unless (current_user.accounts.include?(@account)) &&  (@account.status == true)
       flash[:notice] = "You are not Autherized to access!"
       render "pages/404"
     end
@@ -27,8 +31,8 @@ class AccountsController < ApplicationController
     new_params = account_params.merge!(auto_generate)
     @account = current_user.accounts.create(new_params)
     if @account.errors.empty?
-      flash[:notice] = "Successfully created account"
-      redirect_to account_path(@account)
+      flash[:notice] = "Successfully created account. Waiting for Approval from bank side "
+      redirect_to accounts_path
     else
       render "new"
     end
