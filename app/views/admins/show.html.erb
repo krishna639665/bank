@@ -1,0 +1,98 @@
+<%= stylesheet_link_tag "popup_card" %>
+<div class="mt-4" style= "margin-left: 84%; position: absolute; " >
+  <%= link_to "Back", :back, class: "btn-primary" %>
+</div>
+<div class="card-container">
+  <div class="pop-card" >
+    <ul class="card__info">
+      <li>
+        <span>Name</span>
+        <span class="card__info__stats"><%=@user.username%></span>
+      </li>
+      <li>
+        <span>Email Address</span>
+        <span class="card__info__stats"><%= @user.email %></span>
+      </li>
+      <li>
+        <span>Created</span>
+        <span class="card__info__stats"><%= @user.created_at.strftime("%D, %T") %></span>
+      </li>
+      <li>
+        <span>Signed up through</span>
+        <span class="card__info__stats">
+          <% if  @user.provider?%>
+            <%= @user.provider%>
+          <% else %>
+            By Email
+          <% end %>
+        </span>
+      </li>
+      <li>
+        <span>Current login</span>
+        <span class="card__info__stats"><%= @user.current_sign_in_at %></span>
+      </li>
+      <li>
+        <span>Last login</span>
+        <span class="card__info__stats"><%= @user.last_sign_in_at %></span>
+      </li>
+      <li>
+        <span>Total Login </span>
+        <span class="card__info__stats"><%= @user.sign_in_count %></span>
+      </li>
+      <li>
+        <span>Failed  attempts </span>
+        <span class="card__info__stats"><%= @user.failed_attempts %></span>
+      </li>
+      <li>
+        <span>Current login IP</span>
+        <span class="card__info__stats"><%= @user.current_sign_in_ip %></span>
+      </li>
+      <li>
+        <span>Last login IP</span>
+        <span class="card__info__stats"><%= @user.last_sign_in_ip %></span>
+      </li>
+      <li>
+        <button  onclick="openForm()">Total Account</button>
+        <span class="card__info__stats"><%= @user.accounts.count %></span>
+      </li>
+    </ul>
+    <div  id="myCard">
+      <div class="popup-card" >
+        <button type="button" class="btn-close" onclick="closeForm()"></button>
+        <% @user.accounts.each do |account| %>
+          <ul class="card__info">
+            <li>
+              <span>Account Type</span>
+              <span class="card__info__stats"><%=account.account_type%></span>
+            </li>
+            <li>
+              <span>Account Number</span>
+              <span class="card__info__stats"><%=account.account_number%></span>
+            </li>
+            <li>
+              <span>Balance</span>
+              <span class="card__info__stats"><%=account.account_balance%></span>
+            </li>
+            <li>
+              <span>Card Number</span>
+              <span class="card__info__stats"><%=account.card.number%></span>
+            </li>
+            <li>
+              <span>Card  Cvv</span>
+              <span class="card__info__stats"><%=account.card.cvv%></span>
+            </li>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function openForm() {
+    document.getElementById("myCard").style.display = "block";
+  }
+
+  function closeForm() {
+    document.getElementById("myCard").style.display = "none";
+  }
+</script>
