@@ -16,9 +16,9 @@ class User < ApplicationRecord
 
   VALID_USERNAME_REGEX = /\A(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])/i
   VALID_PASSWORD = /(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}/
-  # validates :username, presence: true, length: {minimum: 8, maximum: 20 },
-        #  format: { with: VALID_USERNAME_REGEX, message: 'cannot have special characters'  },
-        #  uniqueness: { case_sensitive: false }
+   validates :username, presence: true, uniqueness: { case_sensitive: false }
+  #  format: { with: VALID_USERNAME_REGEX, message: 'cannot have special characters'  }
+          
   # validates :password, presence: true, format: {with: VALID_PASSWORD, message: 'week password'}
 
   

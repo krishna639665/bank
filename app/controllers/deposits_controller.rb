@@ -10,11 +10,6 @@ class DepositsController < ApplicationController
   end
 
   def create
-    # We have to give admin account id below. currently i given 5 as admin account
-    if Account.find_by(account_number: params[:account_number]) == nil
-      flash[:alert] = "Invalid account number provided"
-      raise "Invalid account number provided"
-    end
     sender_account = Account.find(1)
     recipient_account = Account.find(params[:account_id])
     raise "Invalid amount" if params[:transaction_amount].to_i < 0
@@ -31,7 +26,7 @@ class DepositsController < ApplicationController
     end
   rescue => exception
     flash[:alert] = exception.message
-    render "new"
+    redirect_to new_account_deposit_path
   end
 
   def account_validation(account_num)

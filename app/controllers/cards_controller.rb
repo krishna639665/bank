@@ -1,5 +1,6 @@
 class CardsController < ApplicationController
   before_action :generate_card, only: [:new]
+  before_action :set_card, only: [:set_pin, :save_pin]
 
   def new
     @card = Card.new
@@ -7,10 +8,8 @@ class CardsController < ApplicationController
 
   def show
     @account = Account.find(params[:account_id])
-    if !(current_user.accounts.include?(@account))
+    if (@account.card.id != params[:id].to_i) || (Card.find_by(id: params[:id]).nil?) || !(current_user.accounts.include?(@account))
       flash[:notice] = "You are not Autherized to access!"
-      render "pages/404"
-    elsif(Card.find_by(id: params[:id]).nil?)
       render "pages/404"
     else
       @card = Card.find(params[:id])
@@ -26,28 +25,28 @@ class CardsController < ApplicationController
   end
 
   def set_pin
-    @card = Card.find(params[:card_id])
   end
 
   def save_pin
-    card = Card.find(params[:card_id])
-    raise "Invalid pin, Try again" if pin_params[:pin] == nil || pin_params[:pin] == ""
-    raise "Enter a valid pin 0-9 Only 6 digits" unless pin_params[:pin] =~ /[0-9]{6,6}/
-    raise "Entered fields are not matching" unless pin_params[:pin] == pin_params[:pin2]
-    card.pin = pin_params[:pin]
-    card.save
-    if card.errors.empty?
+    @card.pin = pin_params[:pin]
+    @card.errors.add(:pin, "Enter a valid pin 0-9 Only 6 digits") unless pin_params[:pin] =~ /^\d{6}$/
+    @card.errors.add(:pin2, "Entered fields are not matching") unless pin_params[:pin] == pin_params[:pin2]
+    if @card.errors.empty?
+      @card.save
       flash[:notice] = "Card pin saved successfully"
-      redirect_to account_card_path(card.account_id, card)
+      redirect_to account_card_path(@card.account_id, @card)
+    else
+      render "set_pin"
     end
-  rescue => exception
-    flash[:alert] = exception.message
-    redirect_to account_card_path(card.account_id, card)
   end
 
   private
 
   def pin_params
     params.require(:card).permit(:pin, :pin2)
+  end
+
+  def set_card
+    @card = Card.find(params[:card_id])
   end
 end

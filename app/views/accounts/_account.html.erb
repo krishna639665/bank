@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag "account_show" %>
 <div class="mt-5" style= "margin-left: 84%; position: absolute;" >
-  <%= link_to "Back", :back, class:"btn-primary" %>
+  <%= link_to "Back", accounts_path, class:"btn-primary" %>
 </div>
 <main class="container">
   <div class="card">
@@ -24,11 +24,11 @@
     </ul>
     <div class="card__action">
       <%= link_to 'Update ', edit_account_path(account), class:"card__action__button card__action--follow"%>
-      <%= link_to 'Benefi..Transfer', new_account_beneficiary_path(account), class:"card__action__button card__action--message"%>
+      <%= link_to 'Deposit Amount', new_account_deposit_path(account), class:"card__action__button card__action--message"%>
     </div>
     <div class="card__action">
-      <%= link_to 'Deposit Amount', new_account_deposit_path(account), class:"card__action__button card__action--follow mt-3"%>
-      <%= link_to 'Account History', account_transactions_path(account), class:"card__action__button card__action--message mt-3"%>
+      <%= link_to 'Passbook', account_transactions_path(account), class:"card__action__button card__action--follow mt-3"%>
+      <%= link_to 'Benefi..Transfer', new_account_beneficiary_path(account), class:"card__action__button card__action--message  mt-3"%>
     </div>
     <div class="card__action">
       <%if account.card == nil%>
