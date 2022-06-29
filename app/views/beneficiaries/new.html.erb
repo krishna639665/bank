@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag "payment_gateway" %>
 <div class="mt-4" style="margin-left: 84%; position: absolute; ">
-  <%= link_to "Back", :back, class: "btn-primary" %>
+  <%= link_to "Back", account_path(params[:account_id]), class: "btn-primary" %>
 </div>
 <%= form_with(model: @tnx, url: account_beneficiaries_path)  do |form|  %>
   <div class="container">
@@ -28,11 +28,8 @@
         <%= form.text_field :transaction_amount, placeholder:"100.00",size:"19" %>
         <span>Amount</span>
       </div>
-      <div class="button mt-4">
-        <button>
-          Confirm & Pay
-          <%form.submit%>
-        </button>
+      <div >
+        <%=form.submit "Confirm & Pay", class:"button mt-4" %>
       </div>
     </div>
   </div>

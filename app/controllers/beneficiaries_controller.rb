@@ -14,12 +14,9 @@ class BeneficiariesController < ApplicationController
     recipient_account = Account.find_by(account_number: params[:account_number])
     raise "Invalid account number" if recipient_account.nil?
     raise "Invalid amount" unless params[:transaction_amount] =~ /\A[±]?\d+\z/
+    raise "invalid IFSC" unless params[:account_ifsc].downcase == "swiss0001102"
     transaction_amount = params[:transaction_amount].to_f
     if transaction_amount <= sender_account.account_balance and recipient_account.id != sender_account.id
-      # recipient_account.account_balance = recipient_account.account_balance + transaction_amount
-      # recipient_account.save
-      # sender_account.account_balance = sender_account.account_balance - transaction_amount
-      # sender_account.save
       withrawal_amount(sender_account.id, transaction_amount)
       deposit_amount(recipient_account.id,transaction_amount)
       tnx = transaction_history(sender_account.id, recipient_account.id, transaction_amount)
@@ -29,6 +26,6 @@ class BeneficiariesController < ApplicationController
     end
   rescue => exception
     flash[:alert] = exception.message
-    render "new"
+    redirect_to  new_account_beneficiary_path
   end
 end

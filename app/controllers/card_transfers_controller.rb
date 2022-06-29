@@ -28,7 +28,7 @@ class CardTransfersController < ApplicationController
     end
   rescue => exception
     flash[:alert] = exception.message
-    render "new"
+    redirect_to new_account_card_transfer_path
   end
 
   private

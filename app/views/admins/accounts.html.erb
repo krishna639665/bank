@@ -23,7 +23,12 @@
       <tbody>
         <%@accounts.each do |account|%>
           <tr>
-            <td><%= account.first_name + account.last_name %></td>
+            <td> <% if account.last_name? %>
+                <%= account.first_name + account.last_name %>
+              <% else %>
+                <%= account.first_name %>
+              <% end %>
+            </td>
             <td><%= account.account_type %></td>
             <td><%= account.account_number %></td>
             <td><%= account.account_balance %></td>
