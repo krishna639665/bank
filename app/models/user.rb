@@ -6,11 +6,10 @@ class User < ApplicationRecord
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :two_factor_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :timeoutable, :trackable,
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2],
-                        :otp_secret_encryption_key => ENV["OTP_SECRET_KEY"],
                         authentication_keys: [:login]
 
   VALID_USERNAME_REGEX = /\A(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])/i
@@ -48,30 +47,5 @@ class User < ApplicationRecord
       user.username = auth.info.name   # assuming the user model has a name
     end
   end
-
-  def generate_two_factor_secret_if_missing!
-    return unless otp_secret.nil?
-    update!(otp_secret: User.generate_otp_secret)
-  end
-
-  def enable_two_factor!
-    current_user.otp_required_for_login = true
-    current_user.otp_secret = User.generate_otp_secret
-    current_user.save!
-  end
-
-  def disable_two_factor!
-    update!(
-      otp_required_for_login: false,
-      otp_secret: nil,
-      otp_backup_codes: nil,
-    )
-  end
-
-  def two_factor_qr_code_uri
-    issuer = ENV["OTP_2FA_ISSUER_NAME"]
-    label = [issuer, email].join(":")
-
-    otp_provisioning_uri(label, issuer: issuer)
-  end
+  
 end
