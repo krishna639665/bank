@@ -85,3 +85,5 @@ gem "pagy", "~> 5.10"
 gem 'activerecord-session_store'
 gem "chartkick"
 gem "groupdate"
+gem 'devise-two-factor'
+gem 'rqrcode'

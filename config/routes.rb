@@ -14,10 +14,12 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks',
     sessions: 'users/sessions',
     registrations: 'users/registrations'
+   
   }
-
+  
+  resource :two_factor_settings, except: [:index, :show]   
   devise_scope :user do  
-    get '/users/sign_out' => 'devise/sessions#destroy'     
+    get '/users/sign_out' => 'devise/sessions#destroy'
     resources :accounts do
       resources :transactions, only: [:index,:show]
       resources :deposits, only: [:new, :create]
