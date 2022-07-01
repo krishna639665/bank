@@ -15,11 +15,9 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
-  
 
   devise_scope :user do  
-    get '/users/sign_out' => 'devise/sessions#destroy'
-    resource :two_factor_settings, except: [:index, :show]     
+    get '/users/sign_out' => 'devise/sessions#destroy'     
     resources :accounts do
       resources :transactions, only: [:index,:show]
       resources :deposits, only: [:new, :create]

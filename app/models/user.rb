@@ -1,7 +1,4 @@
 class User < ApplicationRecord
-  devise :two_factor_authenticatable,
-         :otp_secret_encryption_key => ENV['SECRET_ENCRYPTION_KEY']
-
   attr_writer :login
   has_many :accounts, dependent: :destroy
   after_create :assign_default_role
@@ -9,7 +6,7 @@ class User < ApplicationRecord
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :registerable,
+  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :timeoutable, :trackable,
          :omniauthable, omniauth_providers: [:facebook,:google_oauth2],
@@ -54,30 +51,5 @@ class User < ApplicationRecord
       user.username = auth.info.name   # assuming the user model has a name
    end
   end
-
-  def generate_two_factor_secret_if_missing!
-    return unless otp_secret.nil?
-    update!(otp_secret: User.generate_otp_secret)
-  end
-
-  def enable_two_factor!
-    update!(otp_required_for_login: true)
-  end
-
-  def disable_two_factor!
-    update!(
-        otp_required_for_login: false,
-        otp_secret: nil,
-        otp_backup_codes: nil)
-  end
-
-  def two_factor_qr_code_uri
-    issuer = ENV['OTP_2FA_ISSUER_NAME']
-    label = [issuer, email].join(':')
-
-    otp_provisioning_uri(label, issuer: issuer)
-  end
-
-  
   
 end
