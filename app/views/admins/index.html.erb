@@ -38,9 +38,14 @@
       </div>
     </div>
   </div>
-  <h1>Sign up Users</h1>
+  <h2>Sign up Users</h2>
   <div class="divider"></div>
   <div class="mt-5">
     <%= column_chart User.group_by_day_of_week(:created_at, format: "%a").count, xtitle: "Week", ytitle: "Users" %>
+  </div>
+  <h2 class="mt-5">Transactions Per Day</h2>
+  <div class="divider"></div>
+  <div class="mt-5">
+    <%= line_chart Transaction.group_by_day_of_week(:created_at, format: "%a").count, xtitle: "Days", ytitle: "Transactions"%>
   </div>
 </div>
