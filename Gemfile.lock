@@ -76,6 +76,9 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     autoprefixer-rails (10.4.7.0)
       execjs (~> 2)
+    aws-eventstream (1.2.0)
+    aws-sigv4 (1.5.0)
+      aws-eventstream (~> 1, >= 1.0.2)
     bcrypt (3.1.18)
     bindex (0.8.1)
     bootsnap (1.12.0)
@@ -271,6 +274,11 @@ GEM
     timeout (0.3.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    vault (0.17.0)
+      aws-sigv4
+    vault-rails (0.8.0)
+      activesupport (>= 5.0)
+      vault (~> 0.17)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.0)
@@ -322,6 +330,7 @@ DEPENDENCIES
   sprockets-rails
   stimulus-rails
   tzinfo-data
+  vault-rails
   web-console
   webdrivers
 
