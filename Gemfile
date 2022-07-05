@@ -86,4 +86,3 @@ gem 'activerecord-session_store'
 gem "chartkick"
 gem "groupdate"
 gem "vault-rails", require: false
-gem 'public_activity'
