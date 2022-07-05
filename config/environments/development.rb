@@ -69,5 +69,7 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   config.sass.inline_source_maps = true
-  
+
+  config.hosts << ENV['NGROK_HOST'] if ENV['NGROK_HOST'].present?
+
 end
