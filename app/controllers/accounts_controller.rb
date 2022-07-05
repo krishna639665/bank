@@ -1,4 +1,5 @@
 class AccountsController < ApplicationController
+  before_action :authenticate_user!
   before_action :show_params, only: [:show, :edit, :update]
 
   def index

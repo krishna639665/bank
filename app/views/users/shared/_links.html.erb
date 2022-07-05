@@ -3,7 +3,7 @@
     <%= image_tag "btn_google_signin_dark_focus_web.png" %>
   <% end %>
 </div>
-<%= link_to  user_facebook_omniauth_authorize_path do %>
+<%= link_to  user_facebook_omniauth_authorize_path, method: :post  do %>
   <%= image_tag "facebook.png",class:"mt-1" ,style:"width: 55%;" %>
 <%end%>
 <%- if controller_name != 'sessions' %>

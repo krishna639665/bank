@@ -1,4 +1,5 @@
 class AdminsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @users = User.count
     @accounts = Account.count
@@ -11,11 +12,11 @@ class AdminsController < ApplicationController
   end
 
   def accounts
-    @pagy, @accounts = pagy(Account.all, items: 6)
+    @pagy, @accounts = pagy(Account.order(id: :asc), items: 6)
   end
 
   def transactions
-    @pagy, @transactions = pagy(Transaction.all, items: 10)
+    @pagy, @transactions = pagy(Transaction.order(created_at: :asc), items: 10)
   end
 
   def cards

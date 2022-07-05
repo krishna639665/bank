@@ -1,4 +1,6 @@
 class Account < ApplicationRecord
+    include PublicActivity::Model
+    tracked
     include Vault::EncryptedModel
     belongs_to :user
     has_many :transactions, dependent: :destroy

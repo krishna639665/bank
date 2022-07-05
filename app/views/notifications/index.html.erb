@@ -1,0 +1,8 @@
+<div class="activity-stream">
+  <% @activities.each do |activity| %>
+    <h1><%= activity.inspect%></h1>
+  <% end %>
+</div>
+<div style="margin-left: 36%;">
+  <%== pagy_bootstrap_combo_nav_js(@pagy) %>
+</div>
