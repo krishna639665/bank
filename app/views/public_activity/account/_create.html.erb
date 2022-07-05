@@ -1,0 +1,18 @@
+<div class="stream">
+  <div class="stream-badge">
+    <i class="fa fa-globe"></i>
+  </div>
+  <div class="stream-panel">
+    <div class="stream-info">
+    </div>
+    <% if activity.trackable %>
+      <i class="fa fa-plus"></i>
+      Added a weather location: <%= link_to truncate(activity.trackable.city_name, :length => 71), activity.trackable %>
+      <small><span class="date">on: <%= activity.created_at.strftime('%d %b, %Y at %I:%M %p') %></span></small>
+    <% else %>
+      <i class="fa fa-window-close"></i>
+      Added a weather location, which has been removed
+      <small><span class="date">on: <%= activity.created_at.strftime('%d %b, %Y at %I:%M %p') %></span></small>
+    <% end %>
+  </div>
+</div>
