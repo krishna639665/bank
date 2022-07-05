@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root "pages#index"
+  
   get '/blog', to: 'pages#blog'
   get '/admin', to: 'admins#index'
   get 'admin/users', to: 'admins#users'
@@ -16,8 +17,9 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  devise_scope :user do  
-    get '/users/sign_out' => 'devise/sessions#destroy'     
+  devise_scope :user do 
+    get '/users/sign_out' => 'devise/sessions#destroy'  
+    get 'users/profile', to: "profiles#show"   
     resources :accounts do
       resources :transactions, only: [:index,:show]
       resources :deposits, only: [:new, :create]

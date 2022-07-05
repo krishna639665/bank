@@ -30,14 +30,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_05_064130) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "card_id"
     t.boolean "status", default: false
     t.string "account_number_encrypted"
     t.string "account_ifsc_encrypted"
     t.string "phone_number_encrypted"
     t.string "adhar_number_encrypted"
     t.index ["account_number"], name: "index_accounts_on_account_number", unique: true
-    t.index ["card_id"], name: "index_accounts_on_card_id"
     t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
@@ -123,6 +121,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_05_064130) do
     t.datetime "locked_at"
     t.string "provider"
     t.string "uid"
+    t.string "encrypted_otp_secret"
+    t.string "encrypted_otp_secret_iv"
+    t.string "encrypted_otp_secret_salt"
+    t.integer "consumed_timestep"
+    t.boolean "otp_required_for_login"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
