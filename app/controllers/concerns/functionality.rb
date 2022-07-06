@@ -4,13 +4,13 @@ module Functionality
     def withrawal_amount(account_id, amount)
         account =Account.find(account_id)
         account.account_balance -= amount
-        account.save
+        # account.save
     end
 
     def deposit_amount(account_id,amount)
         account = Account.find(account_id)
         account.account_balance += amount
-        account.save
+        # account.save
     end
 
     def transaction_history(sender,recipient,amount)

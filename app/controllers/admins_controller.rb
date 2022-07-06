@@ -1,5 +1,6 @@
 class AdminsController < ApplicationController
   before_action :authenticate_user!
+  include Functionality
   def index
     @users = User.count
     @accounts = Account.count
@@ -36,5 +37,16 @@ class AdminsController < ApplicationController
     account.status = true
     account.save
     redirect_to admin_activations_path
+  end
+
+  def reverse_tnx
+    tnxs = Transaction.where(transaction_id: params[:format])
+    tnxs.each do |tnx|
+      binding.break
+      deposit_amount(tnx.account_id,tnx.transaction_amount) if tnx.transaction_type == "debited"
+      withrawal_amount(tnx.account_id,tnx.transaction_amount) if tnx.transaction_type == "credited"
+      tnx.revert = true
+      tnx.save
+    end
   end
 end
