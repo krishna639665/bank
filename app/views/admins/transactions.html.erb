@@ -1,1 +1,58 @@
-<%= render "transactions/transaction" %>
+<%= stylesheet_link_tag "tnx_history" %>
+<div class="mt-4" style= "margin-left: 84%; position: absolute; " >
+  <%= link_to "Back", :back, class:"btn-primary" %>
+</div>
+<section>
+  <!--for demo wrap-->
+  <h1>Account Transactions</h1>
+  <div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+          <th>Tnx ID</th>
+          <th>Tnx Type</th>
+          <th>Tnx Amount</th>
+          <th>Tnx Status</th>
+          <th>Tnx Created</th>
+          <th>Revert Tnx</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <% @transactions.each do |tnx|%>
+          <tr>
+            <td> <%=tnx.transaction_id%> </td>
+            <td> <%=tnx.transaction_type%></td>
+            <td> <%=tnx.transaction_amount%></td>
+            <td> <%=tnx.transaction_status%></td>
+            <td> <%=tnx.created_at.strftime("%D, %T")%></td>
+            <% if tnx.revert == false && tnx.created_at > 24.hours.ago%>
+              <td>
+                <%= link_to 'Revert' , revert_tnx_path(tnx.transaction_id), class:"btn btn-link"%>
+              </td>
+            <%elsif tnx.revert == true%>
+              <td>
+                Revised
+              </td>
+            <%else%>
+              <td>
+                Time out
+              </td>
+            <%end%>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+</section>
+<div style="margin-left: 36%;">
+  <%== pagy_bootstrap_combo_nav_js(@pagy) %>
+</div>
+<div class="made-with-love">
+  Made with
+  <i>♥</i> by
+  <a target="_blank" href="https://www.instagram.com/yadhu_krish_na/">Yadhu & Krishna</a>
+</div>
