@@ -29,14 +29,22 @@
             <td> <%=tnx.transaction_amount%></td>
             <td> <%=tnx.transaction_status%></td>
             <td> <%=tnx.created_at.strftime("%D, %T")%></td>
-            <% if tnx.revert == false%>
+            <% if tnx.revert == false && tnx.created_at > 24.hours.ago%>
               <td>
                 <%= link_to 'Revert' , revert_tnx_path(tnx.transaction_id), class:"btn btn-link"%>
               </td>
-            </tr>
-          <%end%>
-        </tbody>
-      <%end%>
+            <%elsif tnx.revert == true%>
+              <td>
+                Revised
+              </td>
+            <%else%>
+              <td>
+                Time out
+              </td>
+            <%end%>
+          </tr>
+        <%end%>
+      </tbody>
     </table>
   </div>
 </section>

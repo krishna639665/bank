@@ -42,11 +42,12 @@ class AdminsController < ApplicationController
   def reverse_tnx
     tnxs = Transaction.where(transaction_id: params[:format])
     tnxs.each do |tnx|
-      binding.break
       deposit_amount(tnx.account_id,tnx.transaction_amount) if tnx.transaction_type == "debited"
       withrawal_amount(tnx.account_id,tnx.transaction_amount) if tnx.transaction_type == "credited"
       tnx.revert = true
       tnx.save
     end
+    redirect_to admin_transactions_path
+    flash[:notice] = "Transaction Revised From Bank End"
   end
 end
