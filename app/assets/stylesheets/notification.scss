@@ -1,0 +1,54 @@
+.card-list-body {
+    margin: auto !important;
+    padding: inherit;
+}
+
+.card-list {
+    width: min-content;
+    margin-bottom: 0.75rem;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    background: transparent;
+    margin-left: 59%;
+}
+
+.card-top {
+    height: 100px;
+    padding: 7px;
+}
+
+.card-list .card-list-head {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    padding: 0.5rem;
+}
+
+.card-title {
+    margin-bottom: 1.5rem;
+}
+
+.card-title h6 {
+    margin: 0;
+    font-size: 0.9em;
+}
+
+.card-title {
+    max-width: 90%;
+}
+
+.card::after {
+    display: none;
+}
+
+.text-small {
+    font-size: 0.8em !important;
+}
+
+.divScroll {
+    overflow: auto;
+    height: 500px;
+}

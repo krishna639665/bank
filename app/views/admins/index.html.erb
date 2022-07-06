@@ -49,4 +49,3 @@
     <%= line_chart Transaction.group_by_day_of_week(:created_at, format: "%a").count, xtitle: "Days", ytitle: "Transactions"%>
   </div>
 </div>
-<%= render_activities(@activities) %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_05_064130) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_06_042455) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,32 +30,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_05_064130) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "card_id"
     t.boolean "status", default: false
     t.string "account_number_encrypted"
     t.string "account_ifsc_encrypted"
     t.string "phone_number_encrypted"
     t.string "adhar_number_encrypted"
     t.index ["account_number"], name: "index_accounts_on_account_number", unique: true
+    t.index ["card_id"], name: "index_accounts_on_card_id"
     t.index ["user_id"], name: "index_accounts_on_user_id"
-  end
-
-  create_table "activities", force: :cascade do |t|
-    t.string "trackable_type"
-    t.bigint "trackable_id"
-    t.string "owner_type"
-    t.bigint "owner_id"
-    t.string "key"
-    t.text "parameters"
-    t.string "recipient_type"
-    t.bigint "recipient_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type"
-    t.index ["owner_type", "owner_id"], name: "index_activities_on_owner"
-    t.index ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type"
-    t.index ["recipient_type", "recipient_id"], name: "index_activities_on_recipient"
-    t.index ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type"
-    t.index ["trackable_type", "trackable_id"], name: "index_activities_on_trackable"
   end
 
   create_table "cards", force: :cascade do |t|
@@ -66,6 +49,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_05_064130) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_cards_on_account_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "message"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -121,11 +112,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_05_064130) do
     t.datetime "locked_at"
     t.string "provider"
     t.string "uid"
-    t.string "encrypted_otp_secret"
-    t.string "encrypted_otp_secret_iv"
-    t.string "encrypted_otp_secret_salt"
-    t.integer "consumed_timestep"
-    t.boolean "otp_required_for_login"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -141,4 +127,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_05_064130) do
   end
 
   add_foreign_key "cards", "accounts"
+  add_foreign_key "notifications", "users"
 end
