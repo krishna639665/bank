@@ -1,5 +1,4 @@
 require_relative "boot"
-
 require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
@@ -16,7 +15,7 @@ module Bank
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
-     config.time_zone = "New Delhi"
+    config.time_zone = "New Delhi"
     # config.eager_load_paths << Rails.root.join("extras")
     config.assets.compile = true
   end

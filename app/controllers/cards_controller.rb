@@ -21,6 +21,7 @@ class CardsController < ApplicationController
     cvv = ("%03d" % rand(0..999)).to_s
     @account = Account.find(params[:account_id])
     @card = @account.create_card(number: number, cvv: cvv)
+    CardChargeJob.perform_in(1.minutes, @account.id)
     redirect_to account_card_path(@account.id, @card)
   end
 
