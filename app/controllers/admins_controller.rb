@@ -1,5 +1,6 @@
 class AdminsController < ApplicationController
   before_action :authenticate_user!
+  include Functionality
   def index
     @users = User.count
     @accounts = Account.count
@@ -16,11 +17,11 @@ class AdminsController < ApplicationController
   end
 
   def transactions
-    @pagy, @transactions = pagy(Transaction.order(created_at: :asc), items: 10)
+    @pagy, @transactions = pagy(Transaction.order(created_at: :desc), items: 10)
   end
 
   def cards
-    @pagy, @cards = pagy(Card.all, items: 6)
+    @pagy, @cards = pagy(Card.order(id: :asc), items: 6)
   end
 
   def show
@@ -36,5 +37,17 @@ class AdminsController < ApplicationController
     account.status = true
     account.save
     redirect_to admin_activations_path
+  end
+
+  def reverse_tnx
+    tnxs = Transaction.where(transaction_id: params[:format])
+    tnxs.each do |tnx|
+      deposit_amount(tnx.account_id,tnx.transaction_amount) if tnx.transaction_type == "debited"
+      withrawal_amount(tnx.account_id,tnx.transaction_amount) if tnx.transaction_type == "credited"
+      tnx.revert = true
+      tnx.save
+    end
+    redirect_to admin_transactions_path
+    flash[:notice] = "Transaction Revised From Bank End"
   end
 end

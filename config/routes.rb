@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'admin/cards', to: 'admins#cards'
   get 'admin/activations', to: 'admins#activation'
   get 'admin/isactive/:id', to: "admins#active", as: "admin_isactive"
+  get 'admin/reverse_tnx', to: 'admins#reverse_tnx', as: 'revert_tnx'
   devise_for :users,controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks',
     sessions: 'users/sessions',
