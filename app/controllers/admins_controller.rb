@@ -41,9 +41,11 @@ class AdminsController < ApplicationController
 
   def reverse_tnx
     tnxs = Transaction.where(transaction_id: params[:format])
-    tnxs.each do |tnx|
-      deposit_amount(tnx.account_id,tnx.transaction_amount) if tnx.transaction_type == "debited"
-      withrawal_amount(tnx.account_id,tnx.transaction_amount) if tnx.transaction_type == "credited"
+    tnxs.each do |tnx| 
+      msg1 = "Dear customer as per your request RS. #{tnx.transaction_amount} revise back to Your Account #{"xxxxxxxx" + Account.find(tnx.account_id).account_number.split(//).last(4).join} on." if tnx.transaction_type == "debited"
+      msg2 = "Dear customer Your Account #{"xxxxxxxx" + Account.find(tnx.account_id).account_number.split(//).last(4).join} Debit with amount RS. #{tnx.transaction_amount} due to TNX ID #{tnx.transaction_id} is revised on." if tnx.transaction_type == "credited"
+      deposit_amount(tnx.account_id,tnx.transaction_amount, msg1) if tnx.transaction_type == "debited"
+      withrawal_amount(tnx.account_id,tnx.transaction_amount, msg2) if tnx.transaction_type == "credited"
       tnx.revert = true
       tnx.save
     end

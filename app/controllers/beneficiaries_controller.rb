@@ -17,8 +17,10 @@ class BeneficiariesController < ApplicationController
     raise "invalid IFSC" unless params[:account_ifsc].downcase == "swiss0001102"
     transaction_amount = params[:transaction_amount].to_f
     if transaction_amount <= sender_account.account_balance and recipient_account.id != sender_account.id
-      withrawal_amount(sender_account.id, transaction_amount)
-      deposit_amount(recipient_account.id,transaction_amount)
+      msg = "Your Account No. #{"xxxxxxxx" + sender_account.account_number.split(//).last(4).join} Debit with amount RS. #{transaction_amount} on."
+      withrawal_amount(sender_account.id, transaction_amount, msg)
+      msg = "Your Account No. #{"xxxxxxxx" + recipient_account.account_number.split(//).last(4).join} Credited with amount RS. #{transaction_amount} on."
+      deposit_amount(recipient_account.id,transaction_amount, msg)
       tnx = transaction_history(sender_account.id, recipient_account.id, transaction_amount)
       redirect_to account_transaction_path(sender_account.id, tnx)
     else

@@ -1,19 +1,17 @@
 module Functionality
   extend ActiveSupport::Concern
 
-  def withrawal_amount(account_id, amount)
+  def withrawal_amount(account_id, amount, msg)
     account = Account.find(account_id)
     account.account_balance -= amount
     account.save
-    msg = "Your account Ending with #{account.account_number} is debited with an #{amount}. if its not you. contact bank"
     notify(account_id, amount, msg)
   end
 
-  def deposit_amount(account_id, amount)
+  def deposit_amount(account_id, amount,msg)
     account = Account.find(account_id)
     account.account_balance += amount
     account.save
-    msg = "Your account Ending with #{account.account_number} is credited with #{amount} Successfully"
     notify(account_id, amount, msg)
   end
 
