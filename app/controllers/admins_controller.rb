@@ -17,11 +17,11 @@ class AdminsController < ApplicationController
   end
 
   def transactions
-    @pagy, @transactions = pagy(Transaction.order(created_at: :asc), items: 10)
+    @pagy, @transactions = pagy(Transaction.order(created_at: :desc), items: 10)
   end
 
   def cards
-    @pagy, @cards = pagy(Card.all, items: 6)
+    @pagy, @cards = pagy(Card.order(id: :asc), items: 6)
   end
 
   def show

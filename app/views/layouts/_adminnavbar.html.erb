@@ -14,7 +14,11 @@
         <li><%= link_to 'Transactions', admin_transactions_path %> </li>
         <li><%= link_to 'Cards', admin_cards_path %> </li>
         <li><%= link_to 'Acc.Activation', admin_activations_path %> </li>
-        <li><%= link_to 'Notification', notifications_path %> </li>
+        <li>
+          <%= link_to users_notification_path do %>
+            <i class="fa-solid fa-bell"></i>
+          <% end %>
+        </li>
       </ul>
     </div>
     <div class="btn-primary">

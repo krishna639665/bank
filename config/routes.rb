@@ -20,7 +20,8 @@ Rails.application.routes.draw do
 
   devise_scope :user do 
     get '/users/sign_out' => 'devise/sessions#destroy'  
-    get 'users/profile', to: "profiles#show"   
+    get 'users/profile', to: "profiles#show" 
+    get 'users/notification', to: "notifications#index" 
     resources :accounts do
       resources :transactions, only: [:index,:show]
       resources :deposits, only: [:new, :create]
@@ -34,5 +35,5 @@ Rails.application.routes.draw do
       end
     end
   end
-  resources :notifications, only:[:index]
+  
 end

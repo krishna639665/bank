@@ -2,6 +2,7 @@ class User < ApplicationRecord
   attr_writer :login
   has_many :accounts, dependent: :destroy
   after_create :assign_default_role
+  has_many :notifications, dependent: :destroy
   rolify
 
   # Include default devise modules. Others available are:
