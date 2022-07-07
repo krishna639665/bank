@@ -94,6 +94,11 @@
             </tbody>
           </table>
         </div>
+        <div class="mt-5">
+          <% if current_user.has_role? :admin %>
+            <%= link_to 'My Account', account_path(1), class:"btn-primary" %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

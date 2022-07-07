@@ -26,7 +26,7 @@
         </div>
         <div class="main">
           <div class="number-title"><%= @card.account.first_name%></div>
-          <div class="number"><%= @card.number%></div>
+          <div class="number"><%= @card.number.insert(4,"-").insert(9,"-").insert(14,"-")%></div>
         </div>
         <div class="dates">
           <div class="start">

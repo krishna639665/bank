@@ -19,8 +19,10 @@ class CardTransfersController < ApplicationController
     raise "Invalid account number" if recipient_account.nil?
     transaction_amount = card_params[:transaction_amount].to_f
     if transaction_amount <= sender_account.account_balance and recipient_account.id != sender_account.id
-      withrawal_amount(sender_account.id, transaction_amount)
-      deposit_amount(recipient_account.id,transaction_amount)
+      msg = "Your Card No. #{"xxxx-xxxx-xxxx-" + sender_account.card.number.split(//).last(4).join} Debit with amount RS. #{transaction_amount} on."
+      withrawal_amount(sender_account.id, transaction_amount, msg)
+      msg = "Your Account No. #{"xxxx-xxxx-xxxx-" + card_params[:number].split(//).last(4).join} Credited with amount RS. #{transaction_amount} on."
+      deposit_amount(recipient_account.id,transaction_amount, msg)
       tnx = transaction_history(sender_account.id, recipient_account.id, transaction_amount)
       redirect_to account_transaction_path(sender_account.id, tnx)
     else
